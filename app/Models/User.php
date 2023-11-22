@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Maintenance::class);
     }
+    
+        public function authoredNotes()
+    {
+        return $this->hasMany(Note::class, 'author_id');
+    }
 }
