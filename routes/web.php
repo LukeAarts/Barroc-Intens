@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('homepage');
 });
-
+Route::resource('notes', NoteController::class);
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('/dashboard', function () {
