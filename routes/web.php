@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteController;
-
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +24,8 @@ Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::resource('purchases', PurchaseController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
