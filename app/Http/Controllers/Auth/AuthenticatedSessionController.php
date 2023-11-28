@@ -29,7 +29,27 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+
+        $user = $request->user();
+
+        if ($user->hasRole('Admin')) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->hasRole('User')) {
+            return redirect()->route('user.dashboard');
+        } elseif ($user->hasRole('Finance')) {
+            return redirect()->route('finance.dashboard');
+        } elseif ($user->hasRole('Sales')) {
+            return redirect()->route('sales.dashboard');
+        } elseif ($user->hasRole('Maintenance')) {
+            return redirect()->route('maintenance.dashboard');
+        } elseif ($user->hasRole('Inventory')) {
+            return redirect()->route('inventory.dashboard'); //is inkoop
+        } elseif ($user->hasRole('Customer')) {
+            return redirect()->route('customer.dashboard');
+        } else {
+
+            return redirect(RouteServiceProvider::HOME);
+        }
     }
 
     /**
