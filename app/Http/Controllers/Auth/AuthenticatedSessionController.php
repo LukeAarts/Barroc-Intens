@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->hasRole('Maintenance')) {
             return redirect()->route('maintenance.dashboard');
         } elseif ($user->hasRole('Inventory')) {
-            return redirect()->route('inventory.dashboard'); //is inkoop
+            return redirect()->route('purchases.index'); //is inkoop
         } elseif ($user->hasRole('Customer')) {
             return redirect()->route('customer.dashboard');
         } else {
