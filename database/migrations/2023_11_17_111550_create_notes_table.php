@@ -16,7 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->longText('note');
             $table->dateTime('date');
-            $table->integer('company_id')->references('id')->on('companies');
+            $table->integer('company_id')->nullable()->references('id')->on('companies');
+
             $table->integer('author_id')->references('id')->on('users');
         });
     }
