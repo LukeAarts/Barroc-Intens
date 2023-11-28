@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::resource('posts', PurchaseController::class);
+Route::resource('purchases', PurchaseController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
