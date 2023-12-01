@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('homepage');
 });
+
+
 Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
