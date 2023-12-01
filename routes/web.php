@@ -25,7 +25,7 @@ Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('us
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::resource('purchases', PurchaseController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('purchases', PurchaseController::class);
 });
 
 require __DIR__ . '/auth.php';
