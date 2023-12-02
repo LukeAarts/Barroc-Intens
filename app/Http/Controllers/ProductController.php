@@ -21,7 +21,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
     }
 
     /**
@@ -34,13 +33,14 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required',
             'image_path' => 'nullable',
-
+            'stock' => 'nullable',
+            'product_category_id' => 'nullable',
 
         ]);
 
         Product::create($request->post());
 
-        return Redirect::route('purchases.index')->with('success', 'Product is succesvol toegevoegd.');
+        return Redirect::route('purchases_products.index')->with('success', 'Product is succesvol toegevoegd.');
     }
 
     /**
