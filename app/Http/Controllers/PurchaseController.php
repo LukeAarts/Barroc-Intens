@@ -11,7 +11,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('purchases.index');
+        return view('purchases_products.index');
     }
 
     /**
