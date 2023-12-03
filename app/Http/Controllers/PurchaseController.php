@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -11,7 +13,13 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('purchases_products.index');
+        $products = Product::all();
+        $categories = Category::all();
+     
+        return view('purchases_products.index',[
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 
     /**

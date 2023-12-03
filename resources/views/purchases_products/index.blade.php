@@ -52,12 +52,31 @@
             <th class="border py-2 px-4">Prijs</th>
             <th class="border py-2 px-4">Voorraad</th>
             <th class="border py-2 px-4">Categorie ID</th>
-            <th class="border py-2 px-4">Aangemaakt op</th>
-            <th class="border py-2 px-4">Bijgewerkt op</th>
         </tr>
         </thead>
         <tbody>
-        <!-- Voeg meer rijen toe voor andere producten -->
+            @foreach($products as $product)
+            <tr>
+                <td>{{$product->id}}</td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->description}}</td>
+                <td><img style="width: 200px" src="{{asset('storage/uploads/' . $product->image_path)}}" alt=""></td>
+                <td>{{$product->price}}</td>
+                <td>{{$product->stock}}</td>
+                {{-- <td>{{$product->product_category->name}}</td> --}}
+                {{-- <td>{{$post->category->name}}</td>
+                <td>{{$post->description}}</td> --}}
+
+                {{-- <td><a href="{{ route('posts.edit', $post) }}" class="text-black">Bewerken</a></td>
+                <td>
+                    <form method="post" action="{{ route('posts.destroy', $post)}}">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="delete">
+                    </form>
+                </td> --}}
+            </tr>
+        @endforeach
         </tbody>
     </table>
 
