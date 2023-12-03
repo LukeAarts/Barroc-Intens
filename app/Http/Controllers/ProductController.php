@@ -40,6 +40,9 @@ class ProductController extends Controller
 
         Product::create($request->post());
 
+        $filename = $request->file('image_path')->getClientOriginalName();
+        $request->file('image_path')->storeAs('public', $filename);
+
         return Redirect::route('purchases_products.index')->with('success', 'Product is succesvol toegevoegd.');
     }
 
