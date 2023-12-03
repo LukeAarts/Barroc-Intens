@@ -59,7 +59,12 @@ class PurchaseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $products = Product::where('id', $id)->first();
+        $categories = Category::all();
+        return view('purchases_products.edit', [
+            'product' => $products,
+            'categories' => $categories
+        ]);
     }
 
     /**

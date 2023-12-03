@@ -52,6 +52,7 @@
             <th class="border py-2 px-4">Prijs</th>
             <th class="border py-2 px-4">Voorraad</th>
             <th class="border py-2 px-4">Categorie</th>
+            <th class="border py-2 px-4">Bewerken</th>
         </tr>
         </thead>
         <tbody>
@@ -64,11 +65,12 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
                 <td>{{$product->category->name}}</td>
+                <td><a href="{{ route('purchases_products.edit', $product) }}" class="text-black">Bewerken</a></td>
                 {{-- <td>{{$post->category->name}}</td>
                 <td>{{$post->description}}</td> --}}
 
-                {{-- <td><a href="{{ route('posts.edit', $post) }}" class="text-black">Bewerken</a></td>
-                <td>
+                
+                {{-- <td>
                     <form method="post" action="{{ route('posts.destroy', $post)}}">
                         @csrf
                         @method('DELETE')
