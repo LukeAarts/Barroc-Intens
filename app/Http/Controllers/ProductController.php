@@ -101,7 +101,7 @@ class ProductController extends Controller
 
         if ($request->has('delete_old_image') && $request->input('delete_old_image')) {
             // Verwijder de oude afbeelding uit opslag of bestandssysteem
-            Storage::disk('public')->delete('storage/' . $product->image_path);
+            Storage::disk('public')->delete('' . $product->image_path);
     
             // Update de kolom in de database om aan te geven dat er geen afbeelding meer is
             $product->update(['image' => null]);
