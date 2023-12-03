@@ -124,8 +124,19 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Verwijder de afbeelding als die bestaat
+        if ($product->image_path) {
+            Storage::disk('public')->delete('' . $product->image_path);
+        }
+    
+        // Verwijder de post
+        $product->delete();
+
+        return redirect()->route('purchases_products.index')->with('success', 'Project deleted successfully');
     }
+
 }

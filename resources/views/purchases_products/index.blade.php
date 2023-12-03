@@ -53,6 +53,7 @@
             <th class="border py-2 px-4">Voorraad</th>
             <th class="border py-2 px-4">Categorie</th>
             <th class="border py-2 px-4">Bewerken</th>
+            <th class="border py-2 px-4">Verwijderen</th>
         </tr>
         </thead>
         <tbody>
@@ -65,18 +66,14 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
                 <td>{{$product->category->name}}</td>
-                <td><a href="{{ route('purchases_products.edit', $product) }}" class="text-black">Bewerken</a></td>
-                {{-- <td>{{$post->category->name}}</td>
-                <td>{{$post->description}}</td> --}}
-
-                
-                {{-- <td>
-                    <form method="post" action="{{ route('posts.destroy', $post)}}">
+                <td><a href="{{ route('purchases_products.edit', $product) }}" class="text-black">Bewerken</a></td>              
+                <td>
+                    <form method="post" action="{{ route('products.destroy', $product)}}">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="delete">
                     </form>
-                </td> --}}
+                </td>
             </tr>
         @endforeach
         </tbody>
