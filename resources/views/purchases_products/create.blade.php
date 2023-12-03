@@ -43,10 +43,10 @@
 
             <div class="mb-4">
                 <label for="category" class="block text-sm font-semibold text-gray-600">Categorie</label>
-                <select id="category" name="category" class="form-select mt-1 block w-full" >
-                    <option value="1">Categorie 1</option>
-                    <option value="2">Categorie 2</option>
-                    <!-- Voeg meer categorieopties toe indien nodig -->
+                <select id="product_category_id" name="product_category_id" class="form-select mt-1 block w-full">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
 

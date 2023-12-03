@@ -63,7 +63,7 @@
                 <td><img style="width: 100px" src="{{asset('storage/' . $product->image_path)}}" alt=""></td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
-                {{-- <td>{{$product->product_category->name}}</td> --}}
+                <td>{{$product->product_category_id}}</td>
                 {{-- <td>{{$post->category->name}}</td>
                 <td>{{$post->description}}</td> --}}
 
