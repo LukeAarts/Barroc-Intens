@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->hasMany(Quotation::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'product_category_id');
+    }
 }

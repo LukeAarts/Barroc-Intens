@@ -51,7 +51,7 @@
             <th class="border py-2 px-4">Afbeelding</th>
             <th class="border py-2 px-4">Prijs</th>
             <th class="border py-2 px-4">Voorraad</th>
-            <th class="border py-2 px-4">Categorie ID</th>
+            <th class="border py-2 px-4">Categorie</th>
         </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@
                 <td><img style="width: 100px" src="{{asset('storage/' . $product->image_path)}}" alt=""></td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
-                <td>{{$product->product_category_id}}</td>
+                <td>{{$product->category->name}}</td>
                 {{-- <td>{{$post->category->name}}</td>
                 <td>{{$post->description}}</td> --}}
 
