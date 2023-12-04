@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('image_path')->nullable();
             $table->decimal('price', 5, 2);
-            $table->integer('stock');
-            $table->integer('product_category_id')->references('id')->on('product_categories');
+            $table->integer('stock')->nullable();
+            $table->integer('product_category_id')->references('id')->on('product_categories')->nullable();
         });
     }
 

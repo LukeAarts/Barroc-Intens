@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $table = 'custom_products';
     protected $fillable = [
         'name',
         'description',
@@ -24,5 +25,10 @@ class Product extends Model
     public function quotations()
     {
         return $this->hasMany(Quotation::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'product_category_id');
     }
 }

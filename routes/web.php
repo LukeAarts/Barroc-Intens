@@ -20,12 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('homepage');
 });
+
+
 Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::resource('purchases', PurchaseController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('purchases_products', PurchaseController::class);
+    Route::resource('products', ProductController::class);
 });
 
 require __DIR__ . '/auth.php';
