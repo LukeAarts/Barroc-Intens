@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class, 'author_id');
     }
+
+    public function lease_contracts()
+    {
+        return $this->hasMany(LeaseContract::class);
+    }
 }

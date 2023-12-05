@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->string('type');
             $table->boolean('is_signed');
-            $table->integer('customer_id')->references('id')->on('customers');         
+            $table->integer('customer_id')->references('id')->on('users');         
             $table->timestamps();
         });
     }
