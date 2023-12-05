@@ -19,7 +19,7 @@ class User extends Authenticatable
     public const ROLE_MAINTENANCE = 'Maintenance';
     public const ROLE_INVENTORY = 'Inventory';
     public const ROLE_CUSTOMER = 'Customer';
-    public const ROLE_HEADMAINTENANCE = 'Headmaintenance';
+    public const ROLE_HMAINTENANCE = 'Headmaintenance';
     /**
      * The attributes that are mass assignable.
      *
