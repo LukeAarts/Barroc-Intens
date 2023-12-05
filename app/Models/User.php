@@ -19,7 +19,7 @@ class User extends Authenticatable
     public const ROLE_MAINTENANCE = 'Maintenance';
     public const ROLE_INVENTORY = 'Inventory';
     public const ROLE_CUSTOMER = 'Customer';
-
+    public const ROLE_HEADMAINTENANCE = 'Headmaintenance';
     /**
      * The attributes that are mass assignable.
      *
@@ -70,8 +70,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Maintenance::class);
     }
-    
-        public function authoredNotes()
+
+    public function authoredNotes()
     {
         return $this->hasMany(Note::class, 'author_id');
     }
@@ -80,5 +80,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class, 'author_id');
     }
-
 }
