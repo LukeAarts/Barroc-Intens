@@ -25,7 +25,7 @@ return new class extends Migration
             $table->dateTime('bkr_checked_at')->nullable();
 
             $table->timestamps();
-            $table->integer('contact_id')->references('id')->on('users');
+            $table->integer('contact_id')->references('id')->on('users')->nullable();
         });
     }
 
