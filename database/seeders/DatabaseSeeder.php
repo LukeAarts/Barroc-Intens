@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\LeaseContract;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+
             ProductCategorySeeder::class,
+            Lease_contractSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
