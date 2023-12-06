@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteController;
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('purchases_products', PurchaseController::class);
     Route::resource('products', ProductController::class);
+
+    Route::resource('finances', FinanceController::class);
 });
 
 require __DIR__ . '/auth.php';
