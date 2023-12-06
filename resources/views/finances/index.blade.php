@@ -46,36 +46,47 @@
         <thead>
         <tr>
             <th class="border py-2 px-4">ID</th>
-            <th class="border py-2 px-4">Naam</th>
-            <th class="border py-2 px-4">Omschrijving</th>
-            <th class="border py-2 px-4">Afbeelding</th>
-            <th class="border py-2 px-4">Prijs</th>
-            <th class="border py-2 px-4">Voorraad</th>
-            <th class="border py-2 px-4">Categorie</th>
-            <th class="border py-2 px-4">Bewerken</th>
-            <th class="border py-2 px-4">Verwijderen</th>
+            <th class="border py-2 px-4">Bedrijfsnaam</th>
+            <th class="border py-2 px-4">Straat</th>
+            <th class="border py-2 px-4">Huisnummer</th>
+            <th class="border py-2 px-4">Postcode</th>
+            <th class="border py-2 px-4">Stad</th>
+            <th class="border py-2 px-4">Telefoonummer</th>
+            <th class="border py-2 px-4">BKR Check</th>
+            <th class="border py-2 px-4">BKR gecheckt op</th>
         </tr>
         </thead>
         <tbody>
-            {{-- @foreach($products as $product)
+            @foreach($companies as $company)
             <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name}}</td>
-                <td>{{$product->description}}</td>
-                <td><img style="width: 100px" src="{{asset('storage/' . $product->image_path)}}" alt=""></td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->stock}}</td>
-                <td>{{$product->category->name}}</td>
-                <td><a href="{{ route('purchases_products.edit', $product) }}" class="text-black">Bewerken</a></td>              
+                <td>{{$company->id}}</td>
+                <td>{{$company->name}}</td>
+                <td>{{$company->street}}</td>
+                <td>{{$company->house_number}}</td>
+                <td>{{$company->zipcode}}</td>
+                <td>{{$company->city}}</td>
+                <td>{{$company->phonenumber}}</td>
                 <td>
+                    <form method="post" action="{{ route('finances.update', $company->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" value="{{ $company->id }}">
+                        <div class="flex items-center">
+                            <input type="checkbox" name="bkr_checked" {{ $company->bkr_checked ? 'checked' : '' }}>
+                            <button type="submit" class="text-black ml-2">Opslaan</button>
+                        </div>
+                    </form>
+                </td>
+                     
+                {{-- <td>
                     <form method="post" action="{{ route('products.destroy', $product)}}">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="delete">
                     </form>
-                </td>
+                </td> --}}
             </tr>
-        @endforeach --}}
+        @endforeach
         </tbody>
     </table>
 

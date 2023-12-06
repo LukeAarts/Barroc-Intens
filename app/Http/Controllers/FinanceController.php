@@ -59,7 +59,18 @@ class FinanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'bkr_checked' => 'nullable', // Verwijder 'required' en gebruik 'nullable'
+        ]);
+    
+        $company = Company::findOrFail($id);
+    
+        // Aangepaste logica om 'on' of 'off' in te stellen op 1 of 0
+        $company->bkr_checked = $request->has('bkr_checked') ? 1 : 0;
+    
+        $company->save();
+
+        return redirect()->route('finances.index')->with('success', 'Post updated successfully');
     }
 
     /**

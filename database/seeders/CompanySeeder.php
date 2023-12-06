@@ -30,7 +30,7 @@ class CompanySeeder extends Seeder
             'zipcode' => '65444YY',
             'city' => 'new-jersey',
             'phonenumber' => '061452473',
-            'bkr_checked' => false,
+            'bkr_checked' => true,
         ]);
     }
 }
