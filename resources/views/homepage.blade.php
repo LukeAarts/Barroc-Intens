@@ -26,6 +26,7 @@
     </div>
     <ul class="hidden lg:flex space-x-4 text-xl font-light">
       <li><a href="{{ route('login')}}" class="hover:text-gray-300">Inloggen</a></li>
+    </ul>
     </div>
   </nav>
 

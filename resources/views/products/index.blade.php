@@ -11,9 +11,9 @@
       <!-- Navigatiebalk -->
   <nav class="bg-black p-4 text-white">
     <div class="container mx-auto flex items-center">
-      <a href="#" class="text-4xl font-bold">Barroc Intens</a>
+      <a href="{{route('home')}}" class="text-4xl font-bold">Barroc Intens</a>
       <ul class="flex ml-24 space-x-4 text-xl font-light">
-        <li><a href="#" class="hover:text-gray-300">Home</a></li>
+        <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
         <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
         <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
       </ul>
@@ -31,16 +31,19 @@
             <img src="images/machine-bit-deluxe.png" class="w-54 rounded-md drop-shadow-lg" alt="afbeelding">
             <h3 class="text-xl font-bold mb-2">Machine Bit Deluxe</h3>
             <p>Deze deluxe machine is de shit!</p>
+            <a href="{{route('quote.show', 1)}}" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-black font-bold py-2 px-6 rounded-full">Offerte</a>
         </div>
         <div class="p-6 bg-white rounded-lg shadow-md">
             <img src="images/machine-bit-light.png" class="w-54 rounded-md drop-shadow-lg" alt="afbeelding">
             <h3 class="text-xl font-bold mb-2">Machine Bit Light</h3>
             <p>Machine Bit Light. Topkwaliteit van ons bedrijf!</p>
+            <a href="{{route('quote.show', 2)}}" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-black font-bold py-2 px-6 rounded-full">Offerte</a>
         </div>
         <div class="p-6 bg-white rounded-lg shadow-md">
             <img src="images/machine-groot.jpg" class="w-54 rounded-md drop-shadow-lg" alt="afbeelding">
             <h3 class="text-xl font-bold mb-2">Machine Groot</h3>
             <p>Hele grote machine voor heel veel mensen!</p>
+            <a href="{{route('quote.show', 3)}}" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-black font-bold py-2 px-6 rounded-full">Offerte</a>
         </div>
       </div>
     </div>

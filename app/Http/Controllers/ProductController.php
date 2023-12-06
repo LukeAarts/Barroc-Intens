@@ -102,22 +102,22 @@ class ProductController extends Controller
         if ($request->has('delete_old_image') && $request->input('delete_old_image')) {
             // Verwijder de oude afbeelding uit opslag of bestandssysteem
             Storage::disk('public')->delete('' . $product->image_path);
-    
+
             // Update de kolom in de database om aan te geven dat er geen afbeelding meer is
             $product->update(['image' => null]);
         }
-    
+
         // Verwerk de nieuwe afbeeldingen
         if ($request->hasFile('new_images')) {
             foreach ($request->file('new_images') as $image_path) {
                 $imageName = $image_path->getClientOriginalName();
                 $image_path->storeAs('', $imageName, 'public');
-                $newImages[] = $imageName;   
+                $newImages[] = $imageName;
             }
 
             $product->update(['image_path' => implode(',', $newImages)]);
         }
-    
+
         return redirect()->route('purchases_products.index')->with('success', 'Post updated successfully');
     }
 
@@ -132,7 +132,7 @@ class ProductController extends Controller
         if ($product->image_path) {
             Storage::disk('public')->delete('' . $product->image_path);
         }
-    
+
         // Verwijder de post
         $product->delete();
 

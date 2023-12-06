@@ -11,7 +11,13 @@ class Quotation extends Model
 
     protected $fillable = [
         'customer_id',
-        'content',
+        'companyname',
+        'street',
+        'number',
+        'postalcode',
+        'city',
+        'phonenumber',
+        'email',
         'created_at',
     ];
 
