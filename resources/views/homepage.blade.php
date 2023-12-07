@@ -37,7 +37,7 @@
       <div class="text-center text-white">
         <h1 class="text-5xl font-bold mb-2">Welkom bij Barroc Intens</h1>
         <p class="text-lg font-light">Ontdek onze hoogwaardige koffiemachines voor verhuur</p>
-        <a href="#services" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-white font-bold py-2 px-6 rounded-full">Bekijk onze machines</a>
+        <a href="{{route('products.index')}}" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-white font-bold py-2 px-6 rounded-full">Bekijk onze machines</a>
       </div>
     </div>
   </div>
