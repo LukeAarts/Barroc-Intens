@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phonenumber');
             //$table->string('country_code', 6)->nullable();
             $table->dateTime('bkr_checked_at')->nullable();
+            $table->boolean('bkr_checked'); 
 
             $table->timestamps();
             $table->integer('contact_id')->references('id')->on('users')->nullable();

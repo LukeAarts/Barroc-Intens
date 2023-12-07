@@ -17,8 +17,10 @@ class Company extends Model
         'houseNumber',
         'zipcode',
         'phonenumber',
+        'bkr_checked',
+        'bkr_checked_at',
     ];
-
+    
     protected $table = 'companies';
 
     public function maintenance()
