@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="text-center">
-            <h2 class="text-3xl font-bold mb-8">Onze Machines</h2>
+            <h2 class="text-3xl font-bold mb-8">Onze Producten</h2>
         </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="p-6 bg-white rounded-lg shadow-md">
