@@ -7,11 +7,11 @@ In dit project maak je gebruik van camelCase en Pascalcase.
 PascalCase gebruik je voornamelijk bij het aanmaken van bijv. controllers:
 
 ``` command
-php artisan make:controller ProjectController
+php artisan make:controller ProductController
 ```
 camelCase gebruik je bij het aanmaken van variabelen of functies.
 
-Hier een voorbeeld van de variabelen in de ProjectController
+Hier een voorbeeld van de variabelen in de ProductController
 
 ```php
 $validatedData = $request->validate([
