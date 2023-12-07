@@ -9,26 +9,29 @@ class Maintenance extends Model
 {
     use HasFactory;
 
-    use SoftDeletes;
-
     protected $table = "maintenance_appointments";
 
     protected $fillable = [
-        'remark'
+        'remark',
+        'company_id',
+        'date_added',
+        'product_category_id',
+        'maintenance_type',
+        'assigned',
     ];
 
     public function product_category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'product_category_id');
     }
 
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     public function ticket()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'assigned');
     }
 }

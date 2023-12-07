@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
     <h1>Gebruikers en Notities</h1>
     <ul>
         @foreach($users as $user)
@@ -11,4 +9,3 @@
             </li>
         @endforeach
     </ul>
-@endsection

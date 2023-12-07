@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('city');
             $table->string('phonenumber');
             //$table->string('country_code', 6)->nullable();
-            $table->boolean('bkr_checked');
             $table->dateTime('bkr_checked_at')->nullable();
 
             $table->timestamps();

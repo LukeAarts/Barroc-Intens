@@ -57,13 +57,13 @@ class UserSeeder extends Seeder
 
         ]);
 
-        User::create([
-            'name' => 'headmaintenance',
-            'email' => 'headmaintenance@gmail.com',
-            'password' => Hash::make('headmaintenance123456'),
-            'role' => 'Headmaintenance',
+        // User::create([
+        //     'name' => 'headmaintenance',
+        //     'email' => 'headmaintenance@gmail.com',
+        //     'password' => Hash::make('headmaintenance123456'),
+        //     'role' => 'Headmaintenance',
 
 
-        ]);
+        // ]);
     }
 }

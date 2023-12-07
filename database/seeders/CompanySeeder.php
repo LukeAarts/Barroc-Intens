@@ -20,7 +20,8 @@ class CompanySeeder extends Seeder
             'zipcode' => '6536EY',
             'city' => 'new-york',
             'phonenumber' => '061376473',
-            'bkr_checked' => false,
+            'contact_id' => '123',
+            'bkr_checked_at' => now(),
         ]);
 
         Company::create([
@@ -30,7 +31,8 @@ class CompanySeeder extends Seeder
             'zipcode' => '65444YY',
             'city' => 'new-jersey',
             'phonenumber' => '061452473',
-            'bkr_checked' => true,
+            'contact_id' => '123',
+            'bkr_checked_at' => now(),
         ]);
     }
 }

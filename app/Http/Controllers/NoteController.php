@@ -29,17 +29,19 @@ public function store(Request $request)
     $request->validate([
         'note' => 'required',
         'company_id' => 'nullable|exists:companies,id',
+        'author_id' => 'required|exists:users,id', 
     ]);
     
     // ...
     
     $company_id = $request->input('company_id');
+    $author_id = $request->input('author_id');
     
     $note = new Note([
         'note' => $request->input('note'),
         'date' => now(),
         'company_id' => $company_id,
-        'author_id' => auth()->id(),
+        'author_id' => $author_id,
     ]);
     
     $note->save();
