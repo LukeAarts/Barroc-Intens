@@ -33,6 +33,7 @@ class CompanySeeder extends Seeder
             'city' => 'new-jersey',
             'phonenumber' => '061452473',
             'contact_id' => '123',
+            'bkr_checked' => true,
             'bkr_checked_at' => now(),
         ]);
     }
