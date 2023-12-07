@@ -24,9 +24,10 @@
             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
             <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
         </ul>
-        @if(!\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+        @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
             <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
                 <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
+                <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
             </ul>
         @endif
     </div>
@@ -35,21 +36,23 @@
 <nav class="bg-black p-4 text-white">
     <div class="container mx-auto flex items-center w-full">
         <ul class="flex ml-24 space-x-4 text-xl font-light">
-            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Inventory') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                <li><a href="{{route('purchases_products.index')}}" class="hover:text-gray-300">Voorraad</a></li>
-            @endif
-            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                <li><a href="{{route('notes.index')}}" class="hover:text-gray-300">Notities</a></li>
-            @endif
-            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                <li><a href="{{route('finances.index')}}" class="hover:text-gray-300">Finance</a></li>
-            @endif
+            @if(\Illuminate\Support\Facades\Auth::user() != null)
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Inventory') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <li><a href="{{route('purchases_products.index')}}" class="hover:text-gray-300">Voorraad</a></li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <li><a href="{{route('notes.index')}}" class="hover:text-gray-300">Notities</a></li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <li><a href="{{route('finances.index')}}" class="hover:text-gray-300">Finance</a></li>
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <li><a href="{{route('quote.index')}}" class="hover:text-gray-300">Offertes</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <li><a href="{{route('invoice.index')}}" class="hover:text-gray-300">Facturen</a></li>
                 @endif
+            @endif
         </ul>
     </div>
 </nav>

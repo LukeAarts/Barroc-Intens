@@ -1,4 +1,7 @@
-<h1>Nieuwe Aantekening Toevoegen</h1>
+@extends('layouts.app')
+
+@section('content')
+    <h1>Nieuwe Aantekening Toevoegen</h1>
 <form action="{{ route('notes.store') }}" method="post">
     @csrf
     <label for="note">Aantekening:</label>
@@ -14,3 +17,4 @@
     <button type="submit">Opslaan</button>
 </form>
 <a href="{{ route('notes.index') }}">Terug naar Aantekeningen</a>
+    @endsection

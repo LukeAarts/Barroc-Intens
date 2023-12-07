@@ -1,6 +1,8 @@
+@extends('layouts.app')
 
+@section('content')
     <h1>Notities van {{ $user->name }}</h1>
-    
+
     @if ($notes)
         <ul>
             @foreach($notes as $note)
@@ -24,3 +26,5 @@
         <a href="{{ route('notes.create', ['user_id' => $user->id]) }}">Nieuwe Notitie Toevoegen</a>
         <a href="{{ route('notes.index') }}">Terug naar Gebruikers</a>
     @endif
+
+@endsection
