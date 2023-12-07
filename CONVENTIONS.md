@@ -26,6 +26,10 @@ $product = Product::create([
     'description' => $validatedData['description'],
     // Alle andere code //
 ]);
+```
+
+
+
 
 ## Verzorgde code
 
