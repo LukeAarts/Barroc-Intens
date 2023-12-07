@@ -14,7 +14,7 @@
         <a href="{{route('home')}}" class="text-4xl font-bold">Barroc Intens</a>
         <ul class="flex ml-24 space-x-4 text-xl font-light">
             <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
-            <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
+            <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Producten</a></li>
             <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
         </ul>
         @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))

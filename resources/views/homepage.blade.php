@@ -20,7 +20,7 @@
       <!-- Menu voor grote schermen -->
       <ul class="hidden lg:flex ml-4 space-x-4 text-xl font-light" id="navMenu">
         <li><a href="#" class="hover:text-gray-300">Home</a></li>
-        <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
+        <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Producten</a></li>
         <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
       </ul>
     </div>
