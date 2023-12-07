@@ -38,7 +38,7 @@ Als je aan het einde van het project zit, controleer dan of er geen onnodige cod
 
 ## Op de hoogte brengen van commits
 
-In dit project wordt iedereen op de hoogte gesteld wannneer iemand wijzigingen heeft gemaakt en commits heeft gepusht. Zo voorkomen we weinig merge conflicts.
+In dit project wordt iedereen op de hoogte gesteld wanneer iemand wijzigingen heeft gemaakt en commits heeft gepusht. Zo voorkomen we weinig merge conflicts.
 
 ## Front End en Backend
 ### Front End
