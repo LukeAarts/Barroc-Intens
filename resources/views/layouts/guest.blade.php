@@ -17,10 +17,11 @@
             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
             <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
         </ul>
-        @if(!\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
-        <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
-            <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
-        </ul>
+        @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+            <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
+                <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
+                <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
+            </ul>
         @endif
     </div>
 </nav>

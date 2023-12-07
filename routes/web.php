@@ -7,7 +7,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('homepage');
-});
+})->name("home");
 
 
 
@@ -34,15 +37,19 @@ Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('admin.dashboard');
+
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-    
+    Route::resource('notes', NoteController::class);
+    Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,7 +58,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('purchases_products', PurchaseController::class);
     Route::resource('products', ProductController::class);
-
+    Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
+    Route::resource('quote', QuoteController::class);
+    Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
 });
 
