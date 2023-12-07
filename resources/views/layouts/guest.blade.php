@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koffiemachine Verhuur</title>
+    @vite('resources/css/app.css')
+</head>
+<body class="font-sans">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<!-- Navigatiebalk -->
+<nav class="bg-black p-4 text-white">
+    <div class="container mx-auto flex items-center w-full">
+        <a href="{{route('home')}}" class="text-4xl font-bold">Barroc Intens</a>
+        <ul class="flex ml-24 space-x-4 text-xl font-light">
+            <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
+            <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
+            <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+        @if(!\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+        <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
+            <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
+        </ul>
+        @endif
+    </div>
+</nav>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
+<!-- Diensten-sectie -->
+<section id="services" class="py-16 relative h-screen">
+    @yield('content')
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center py-4">
+    <p>&copy; 2023 KoffieVerhuur. Alle rechten voorbehouden.</p>
+</footer>
+</body>
 </html>
+

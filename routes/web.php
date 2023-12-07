@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteController;
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
+    Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
 });
 

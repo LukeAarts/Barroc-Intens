@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InstallInvoice;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function PHPUnit\Runner\validate;
 
-class QuoteController extends Controller
+class InvoiceController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('quote.list', ["quotes" => Quotation::with('customer')->get()]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function success()
-    {
-        return view('quote.success');
+        return view('invoice.list', ["invoices" => InstallInvoice::with('customer')->with('quotation')->with('finance')->get()]);
     }
 
     /**
@@ -31,7 +22,6 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -40,18 +30,19 @@ class QuoteController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'productid' => 'required',
+            'quoteid' => 'required',
             'bedrijfsnaam' => 'required',
             'straat' => 'required',
             'huisnummer' => 'required',
             'postcode' => 'required',
             'stad' => 'required',
             'telefoonnummer' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'prodname' => 'required',
+            'prodinstallcost' => 'required',
+            'note' => 'nullable'
         ]);
-        $quote = new Quotation();
-        $quote->customer_id = Auth::id();
-        $quote->products_id = $validatedData['productid'];
+        $quote = Quotation::where('id', $validatedData['quoteid'])->firstOrFail();
         $quote->companyname = $validatedData['bedrijfsnaam'];
         $quote->street = $validatedData['straat'];
         $quote->number = $validatedData['huisnummer'];
@@ -59,8 +50,17 @@ class QuoteController extends Controller
         $quote->city = $validatedData['stad'];
         $quote->phonenumber = $validatedData['telefoonnummer'];
         $quote->email = $validatedData['email'];
-        $quote->save();
-        return redirect(route('quote.success'));
+
+        $invoice = new InstallInvoice();
+        $invoice->product_id = $quote->products_id;
+        $invoice->quotation_id = $quote->id;
+        $invoice->customer_id = $quote->customer_id;
+        $invoice->finance_id = Auth::user()->id;
+        $invoice->install_cost = $validatedData['prodinstallcost'];
+        $invoice->info = $validatedData['note'];
+        $invoice->save();
+
+        return redirect(route('invoice.edit', $invoice->id));
     }
 
     /**
@@ -68,16 +68,7 @@ class QuoteController extends Controller
      */
     public function show(string $id)
     {
-        //TODO: Fetch products from database
-        $title = "";
-        if ($id == 1) {
-            $title = "Machine Bit Deluxe";
-        } else if ($id == 2) {
-            $title = "Machine Bit Light";
-        } else if ($id == 3) {
-            $title = "Machine Groot";
-        }
-        return view("quote.create", ["title" => $title, "id" => $id]);
+        return view('invoice.create', ['quote' => Quotation::where('id', $id)->firstOrFail()]);
     }
 
     /**
@@ -85,8 +76,7 @@ class QuoteController extends Controller
      */
     public function edit(string $id)
     {
-        $quote = Quotation::where('id', $id)->firstOrFail();
-        return view("quote.edit", ["quote" => $quote]);
+        return view('invoice.show', ["invoice" => InstallInvoice::with('customer')->with('quotation')->with('finance')->where('id', $id)->firstOrFail()]);
     }
 
     /**

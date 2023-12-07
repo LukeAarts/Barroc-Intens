@@ -21,9 +21,9 @@ class Quotation extends Model
         'created_at',
     ];
 
-    public function company()
+    public function customer()
     {
-        return $this->belongsTo(Company::class, "customer_id", "id");
+        return $this->hasOne(User::class, "id", "customer_id");
     }
 
 

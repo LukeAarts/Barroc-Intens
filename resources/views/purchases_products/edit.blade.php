@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Bwerken</title>
-    <!-- Voeg Tailwind CSS toe -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
+@extends('layouts.app')
+@section('content')
 
-<div class="container mx-auto mt-8">
+
+    <div class="container mx-auto mt-8">
     <div class="max-w-md mx-auto bg-white p-8 border rounded shadow-md">
         <h1 class="text-2xl font-bold mb-6">Product Toevoegen</h1>
 
@@ -37,7 +30,7 @@
                     <img style="width: 200px" src="{{ asset('storage/' . $product->image_path) }}" alt="">
                     <input type="checkbox" name="delete_old_image" value="1"> Verwijder oude afbeelding
                 </div>
-            </div>             
+            </div>
             <div class="mb-4">
                 <label for="new_images" class="block text-gray-700 text-sm font-bold mb-2">New Image(s)</label>
                 <input type="file" id="new_images" name="new_images[]" multiple class="w-full">
@@ -78,5 +71,5 @@
     </div>
 </div>
 
-</body>
-</html>
+
+@endsection
