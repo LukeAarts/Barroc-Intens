@@ -21,6 +21,7 @@ class CompanySeeder extends Seeder
             'city' => 'new-york',
             'phonenumber' => '061376473',
             'contact_id' => '123',
+            'bkr_checked' => true,
             'bkr_checked_at' => now(),
         ]);
 
