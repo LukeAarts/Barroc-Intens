@@ -3,7 +3,7 @@
 
     <div class="max-w-5xl mx-auto bg-white p-8 rounded shadow">
     <header class="flex justify-space-between">
-        <h1 class="text-2xl font-bold mb-8">Finances</h1>
+        <h1 class="text-2xl font-bold mb-8">Bedrijven</h1>
     </header>
     <table class="w-full border">
         <thead>
