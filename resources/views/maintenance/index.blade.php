@@ -1,5 +1,5 @@
-
-
+@extends('layouts.app')
+@section('content')
    <h1>Onderhoudsafspraken</h1>
 
    <table>
@@ -26,3 +26,4 @@
            @endforeach
        </tbody>
    </table>
+@endsection
