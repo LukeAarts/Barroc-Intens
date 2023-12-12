@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\MaintenanceController;
-
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteController;
@@ -22,26 +21,15 @@ use App\Http\Controllers\InvoiceController;
 |
 */
 
-
 Route::get('/', function () {
     return view('homepage');
 })->name("home");
 
-
 Route::resource('products', ProductController::class);
-
-
-// Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('/maintenance', [MaintenanceController::class, 'index']);
 Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('admin.dashboard');
-
 
 Route::middleware('auth')->group(function () {
 
@@ -51,7 +39,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
