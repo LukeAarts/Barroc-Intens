@@ -18,40 +18,37 @@ class NoteController extends Controller
     }
 
     public function create()
-{
-    $users = User::all();
-    return view('notes.create', compact('users'));
-}
+    {
+        $users = User::all();
+        return view('notes.create', compact('users'));
+    }
 
 
-public function store(Request $request)
-{
-    $request->validate([
-        'note' => 'required',
-        'company_id' => 'nullable|exists:companies,id',
-        'author_id' => 'required|exists:users,id', 
-    ]);
-    
-    // ...
-    
-    $company_id = $request->input('company_id');
-    $author_id = $request->input('author_id');
-    
-    $note = new Note([
-        'note' => $request->input('note'),
-        'date' => now(),
-        'company_id' => $company_id,
-        'author_id' => $author_id,
-    ]);
-    
-    $note->save();
-    
-    return redirect()->route('notes.index');
-    
-}
-
-
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'note' => 'required',
+            'company_id' => 'nullable|exists:companies,id',
+            'author_id' => 'required|exists:users,id', 
+        ]);
+        
+        // ...
+        
+        $company_id = $request->input('company_id');
+        $author_id = $request->input('author_id');
+        
+        $note = new Note([
+            'note' => $request->input('note'),
+            'date' => now(),
+            'company_id' => $company_id,
+            'author_id' => $author_id,
+        ]);
+        
+        $note->save();
+        
+        return redirect()->route('notes.index');
+        
+    }
 
     public function show(Note $note)
     {
@@ -78,22 +75,16 @@ public function store(Request $request)
 
     public function userNotes(User $user)
     {
-        $notes = $user->notes; // Notities van de gebruiker ophalen
+        $notes = $user->notes;
         return view('notes.user_notes', compact('user', 'notes'));
     }
 
 
     public function destroy(Note $note)
-{
-    $note->delete();
-
-    // Hier gebruiken we route('notes.index') om door te verwijzen naar de indexpagina
-    return redirect()->route('notes.index')
-        ->with('success', 'Notitie succesvol verwijderd.');
-}
-
-    
-
+    {
+        $note->delete();
+        return redirect()->route('notes.index')->with('success', 'Notitie succesvol verwijderd.');
+    }
     
 }
 

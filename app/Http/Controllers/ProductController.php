@@ -17,16 +17,6 @@ class ProductController extends Controller
         return view('products.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -40,7 +30,6 @@ class ProductController extends Controller
         ]);
 
 
-
         $filename = $request->file('image_path')->getClientOriginalName();
         $request->file('image_path')->storeAs('public', $filename);
 
@@ -52,29 +41,9 @@ class ProductController extends Controller
         $product->product_category_id = $request->input('product_category_id');
         $product->image_path = $filename;
         $product->save();
-
-
-
-
-
         return Redirect::route('purchases_products.index')->with('success', 'Product is succesvol toegevoegd.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
