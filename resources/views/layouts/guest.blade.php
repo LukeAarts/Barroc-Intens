@@ -7,33 +7,38 @@
     @vite('resources/css/app.css')
 </head>
 <body class="font-sans">
+    <div class="relative min-h-screen">
+        <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('images/-1200-1200.jpg');"></div>
+        <div class="relative z-10 bg-black bg-opacity-75 text-white">
+                <!-- Navigatiebalk -->
+                <nav class="p-4 text-white">
+                    <div class="container mx-auto flex items-center w-full">
+                        <img src="images/logo6_groot.png" style="width: 65px" alt="afbeelding">
+                        <ul class="flex ml-24 space-x-4 text-xl font-light">
+                            <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
+                            <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Producten</a></li>
+                            <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
+                        </ul>
+                        @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+                            <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
+                                <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
+                                <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
+                            </ul>
+                        @endif
+                    </div>
+                </nav>
+                
 
-<!-- Navigatiebalk -->
-<nav class="bg-black p-4 text-white">
-    <div class="container mx-auto flex items-center w-full">
-        <a href="{{route('home')}}" class="text-4xl font-bold">Barroc Intens</a>
-        <ul class="flex ml-24 space-x-4 text-xl font-light">
-            <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
-            <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Producten</a></li>
-            <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
-        </ul>
-        @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
-            <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
-                <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
-                <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
-            </ul>
-        @endif
+            <!-- Diensten-sectie -->
+            <section id="services" class="py-16 relative h-screen">
+                @yield('content')
+            </section>
+            <!-- Footer -->
+            <footer class="bg-black text-white font-light text-center py-4">
+                <p>&copy; 2023 KoffieVerhuur. Alle rechten voorbehouden.</p>
+            </footer>
+        </div>
     </div>
-</nav>
-
-<!-- Diensten-sectie -->
-<section id="services" class="py-16 relative h-screen">
-    @yield('content')
-</section>
-<!-- Footer -->
-<footer class="bg-gray-800 text-white text-center py-4">
-    <p>&copy; 2023 KoffieVerhuur. Alle rechten voorbehouden.</p>
-</footer>
 </body>
 </html>
 
