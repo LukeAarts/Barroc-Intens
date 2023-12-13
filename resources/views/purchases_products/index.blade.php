@@ -2,12 +2,8 @@
 @section('content')
 
 <body class="bg-gray-100 p-4">
-<div class="max-w-5xl mx-auto bg-white p-8 rounded shadow">
-    <header class="flex justify-space-between">
-        <h1 class="text-2xl font-bold mb-8">Mijn Winkel</h1>
-        <a href="#" class="text-2xl font-light ml-16">Voorraad</a>
-    </header>
-    <table class="w-full border">
+<div class="overflow-x-auto w-auto px-64">
+    <table id="table" class="table">
         <thead>
         <tr>
             <th class="border py-2 px-4">ID</th>
@@ -31,9 +27,9 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
                 <td>{{$product->category->name}}</td>
-                <td><a href="{{ route('purchases_products.edit', $product) }}" class="text-black">Bewerken</a></td>
+                <td><a href="{{ route('purchases_products.edit', $product) }}" class="btn btn-primary">Bewerken</a></td>
                 <td>
-                    <form method="post" action="{{ route('products.destroy', $product)}}">
+                    <form method="post" class="btn btn-danger" action="{{ route('products.destroy', $product)}}">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="delete">
@@ -42,9 +38,10 @@
             </tr>
         @endforeach
         </tbody>
+        <a href="{{route('purchases_products.create')}}" class="btn btn-success mb-2 text-white">Nieuw</a>
     </table>
-    <a href="{{route('purchases_products.create')}}">Nieuw</a>
-
+        <script>
+            let table = new DataTable('#table');
+        </script>
 </div>
-
 @endsection
