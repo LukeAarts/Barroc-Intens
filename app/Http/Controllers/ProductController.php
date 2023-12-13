@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,7 +15,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = Product::all();
+        $categories = Category::all();
+
+        return view('products.index', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 
     public function store(Request $request)
