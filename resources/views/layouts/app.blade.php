@@ -52,6 +52,9 @@
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <li><a href="{{route('invoice.index')}}" class="hover:text-gray-300">Facturen</a></li>
                 @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Maintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                <li><a href="{{route('maintenance.index')}}" class="hover:text-gray-300">Maintenance</a></li>
+            @endif
             @endif
         </ul>
     </div>

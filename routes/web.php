@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 
-Route::get('/maintenance', [MaintenanceController::class, 'index']);
+
 Route::resource('notes', NoteController::class);
 Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('quote', QuoteController::class);
     Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
+    Route::resource('maintenance', MaintenanceController::class);
 });
 
 require __DIR__ . '/auth.php';
