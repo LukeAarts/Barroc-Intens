@@ -26,11 +26,6 @@ Route::get('/', function () {
 })->name("home");
 
 Route::resource('products', ProductController::class);
-
-
-Route::resource('notes', NoteController::class);
-Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
