@@ -38,22 +38,22 @@
         <ul class="flex ml-24 space-x-4 text-xl font-light">
             @if(\Illuminate\Support\Facades\Auth::user() != null)
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Inventory') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('purchases_products.index')}}" class="hover:text-gray-300">Voorraad</a></li>
+                    <li><a href="{{route('purchases_products.index')}}" class="{{ request()->is('purchases_products*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Voorraad</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('notes.index')}}" class="hover:text-gray-300">Notities</a></li>
+                    <li><a href="{{route('notes.index')}}" class="{{ request()->is('notes*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Notities</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('finances.index')}}" class="hover:text-gray-300">Finance</a></li>
+                    <li><a href="{{route('finances.index')}}" class="{{ request()->is('finances*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Finance</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('quote.index')}}" class="hover:text-gray-300">Offertes</a></li>
+                    <li><a href="{{route('quote.index')}}" class="{{ request()->is('quote*') ? 'bg-white text-black px-2 py-1 rounded-md' : '' }}">Offertes</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('invoice.index')}}" class="hover:text-gray-300">Facturen</a></li>
+                    <li><a href="{{route('invoice.index')}}" class="{{ request()->is('invoice*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Facturen</a></li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Maintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
-                    <li><a href="{{route('maintenance.index')}}" class="hover:text-gray-300">Maintenance</a></li>
+                    <li><a href="{{route('maintenance.index')}}" class="{{ request()->is('maintenance*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Maintenance</a></li>
                 @endif
             @endif
         </ul>
