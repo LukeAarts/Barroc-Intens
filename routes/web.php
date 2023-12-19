@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
+
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
     Route::resource('maintenance', MaintenanceController::class);
+
+    Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
 });
 
 require __DIR__ . '/auth.php';
