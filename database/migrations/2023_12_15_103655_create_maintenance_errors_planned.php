@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('maintenance_errors_planned', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('start_time');
-            $table->string('end_time');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->timestamps();
         });
     }
