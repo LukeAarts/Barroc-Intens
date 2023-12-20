@@ -6,7 +6,7 @@
     <title>FullCalendar in HTML</title>
     <!-- Voeg Bootstrap CSS toe voor stijlverbeteringen -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 </head>
 <body>
     <div class="container mt-4">
