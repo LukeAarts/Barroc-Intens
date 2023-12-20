@@ -15,10 +15,13 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: [
-                    // voeg hier je evenementen toe in het juiste formaat
-                    // { title: 'Evenement 1', start: '2023-01-01' },
-                    // { title: 'Evenement 2', start: '2023-01-02' },
-                    // ...
+                    @foreach($maintenance_errors_planned as $event)
+                        {
+                            title: '{{ $event->title }}',
+                            start: '{{ $event->start_date }}',
+                            end: '{{ $event->end_date }}',
+                        },
+                    @endforeach
                 ]
             });
             calendar.render();
