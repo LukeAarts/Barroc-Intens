@@ -12,6 +12,9 @@ class Maintenance extends Model
     protected $table = "maintenance_appointments";
 
     protected $fillable = [
+        'title',
+        'start_date',
+        'end_date',
         'remark',
         'company_id',
         'date_added',

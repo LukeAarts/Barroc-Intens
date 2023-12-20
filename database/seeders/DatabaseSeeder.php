@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             Lease_contractSeeder::class,
             MaintenanceSeeder::class,
-            MaintenanceErrorPlannedSeeder::class,
-            AppointmentSeeder::class,
         ]);
         \App\Models\User::factory(10)->create();
 

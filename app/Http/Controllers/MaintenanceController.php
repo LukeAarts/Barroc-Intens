@@ -18,8 +18,8 @@ class MaintenanceController extends Controller
 
     public function fullcalander()
     {
-        $maintenance_errors_planned = MaintenanceErrorPlanned::all();
+        $maintenanceAppointments = Maintenance::all();
 
-        return view('maintenance.fullcalendar', compact('maintenance_errors_planned'));
+        return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
     }
 }
