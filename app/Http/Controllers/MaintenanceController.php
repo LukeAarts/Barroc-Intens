@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Maintenance;
+use App\Models\MaintenanceErrorPlanned;
 use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
@@ -16,6 +18,8 @@ class MaintenanceController extends Controller
 
     public function fullcalander()
     {
-        return view('maintenance.fullcalendar');
+        $maintenance_errors_planned = MaintenanceErrorPlanned::all();
+
+        return view('maintenance.fullcalendar', compact('maintenance_errors_planned'));
     }
 }

@@ -13,11 +13,6 @@ class AppointmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Appointment::create([
-            'title' => 'hebjeetenvoormij',
-            'start_date' => '2024-01-09',
-            'end_date' => '2024-05-09',
 
-        ]);
     }
 }
