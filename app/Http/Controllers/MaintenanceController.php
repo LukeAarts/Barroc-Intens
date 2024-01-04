@@ -42,7 +42,7 @@ class MaintenanceController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'remark' => 'required',
             'company_id' => 'required|exists:companies,id',
             'product_category_id' => 'required|exists:product_categories,id',
