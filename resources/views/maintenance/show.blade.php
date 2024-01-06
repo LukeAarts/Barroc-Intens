@@ -13,5 +13,6 @@
     <p><strong>Eind datum:</strong> {{$maintenanceAppointment->end_date}}</p>
     <p><strong>Opmerkingen:</strong> {{$maintenanceAppointment->remark}}</p>
     <p><strong>Type:</strong> {{$maintenanceAppointment->maintenance_type}}</p>
+    <a href="{{ route('maintenance.edit', $maintenanceAppointment->id) }}" class="btn btn-primary">Bewerk</a>
 </body>
 </html>

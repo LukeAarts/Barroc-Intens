@@ -66,4 +66,37 @@ class MaintenanceController extends Controller
 
         return redirect()->route('maintenance.fullcalendar')->with('success', 'Onderhoudsafspraak succesvol toegevoegd.');
     }
+
+    public function edit($id)
+    {
+        $maintenanceAppointment = Maintenance::findOrFail($id);
+        
+
+        return view('maintenance.edit')->with('maintenanceAppointment', $maintenanceAppointment);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $maintenanceAppointment = Maintenance::findOrFail($id);
+
+        // Valideer en sla de bewerkte gegevens op
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'remark' => 'required',
+            'company_id' => 'required|exists:companies,id',
+            'product_category_id' => 'required|exists:product_categories,id',
+            'maintenance_type' => 'required|in:storingsaanvragen,routinematige_bezoeken',
+            'assigned' => 'required',
+            // Voeg hier andere gevalideerde velden toe
+        ]);
+
+        // Update de afspraak met de nieuwe gegevens
+        $maintenanceAppointment->update($validatedData);
+
+        // Redirect terug naar de detailpagina na bewerken
+        return redirect()->route('maintenance.show', $maintenanceAppointment->id);
+    }
+
 }
