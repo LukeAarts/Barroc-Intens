@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('material_workorder', function (Blueprint $table) {
             $table->id();
             $table->integer('material_id')->references('id')->on('materials');
+            $table->integer('material_amount');
             $table->integer('workorder_id')->references('id')->on('work_orders');
 
             $table->timestamps();

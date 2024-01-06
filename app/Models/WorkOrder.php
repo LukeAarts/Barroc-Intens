@@ -16,4 +16,9 @@ class WorkOrder extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(WorkOrder::class);
+    }
 }
