@@ -31,7 +31,7 @@ class MaintenanceController extends Controller
     {
         $maintenanceAppointment = Maintenance::findOrFail($id);
 
-        return view('maintenance.show')->with('$maintenanceAppointment', $maintenanceAppointment);
+        return view('maintenance.show')->with('maintenanceAppointment', $maintenanceAppointment);
     }
 
     public function create()

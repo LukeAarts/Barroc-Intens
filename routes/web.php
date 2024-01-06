@@ -45,7 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
-    Route::resource('maintenance', MaintenanceController::class);
+    Route::resource('maintenance', MaintenanceController::class)->except(['show']);
+    Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
 });
 
 require __DIR__ . '/auth.php';
