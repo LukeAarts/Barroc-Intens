@@ -27,6 +27,13 @@ class MaintenanceController extends Controller
         return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
     }
 
+    public function show(string $id)
+    {
+        $maintenanceAppointment = Maintenance::findOrFail($id);
+
+        return view('maintenance.show')->with('$maintenanceAppointment', $maintenanceAppointment);
+    }
+
     public function create()
     {
         $companies = Company::all();

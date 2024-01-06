@@ -24,24 +24,18 @@
                 events: [
                     @foreach($maintenanceAppointments as $event)
                         {
-                            id: '{{ $event->id }}', // Voeg een uniek ID toe aan elk evenement
+                            id: '{{ $event->id }}',
                             title: '{{ $event->title }}',
                             start: '{{ $event->start_date }}',
                             end: '{{ $event->end_date }}',
-                            backgroundColor: '{{ $event->background_color }}', // Voeg indien nodig kleur toe
+                            backgroundColor: '{{ $event->background_color }}',
                         },
                     @endforeach
                 ],
                 editable: true,
                 eventClick: function(info) {
-                console.log('Event Clicked:', info);
-
-                const title = info.event.title;
-                const start = info.event.start ? info.event.start.toLocaleString() : 'N/A';
-                const end = info.event.end ? info.event.end.toLocaleString() : 'N/A';
-
-                alert(`Naam: ${title}\nStart: ${start}\nEinde: ${end}`);
-            },
+                    
+                },
             });
             calendar.render();
         });
