@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->date('work_order_date');
+            $table->integer('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

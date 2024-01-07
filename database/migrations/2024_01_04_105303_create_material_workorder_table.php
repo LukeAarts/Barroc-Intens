@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('material_id')->references('id')->on('materials');
             $table->integer('material_amount');
             $table->integer('workorder_id')->references('id')->on('work_orders');
-
             $table->timestamps();
         });
     }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use App\Models\User;
+use App\Models\WorkOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WorkOrderController extends Controller
 {
@@ -13,7 +15,11 @@ class WorkOrderController extends Controller
      */
     public function index()
     {
-        //
+        $workOrders = WorkOrder::all();
+        $materials = Material::all();
+        $users = User::all();
+
+        return view('maintenance/work_orders.index', compact('workOrders', 'materials'));
     }
 
     /**
@@ -35,7 +41,38 @@ class WorkOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Valideer het formuliergegevens
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'material' => 'required|exists:materials,id',
+            'material_amount.*' => 'required|numeric',
+        ]);
+    
+        // Creëer een nieuwe werkbon
+        $workOrder = new WorkOrder();
+        $workOrder->title = $request->input('title');
+        $workOrder->description = $request->input('description');
+        $workOrder->work_order_date = $request->input('work_order_date'); // Voeg de werk_order_date toe
+        $workOrder->user_id = Auth::id();
+    
+        // Sla de werkbon op
+        $workOrder->save();
+    
+        // Loop door de hoeveelheden en sla ze op in de material_workorder-tabel
+        foreach ($request->input('material_amount') as $materialId => $material_amount) {
+            // Controleer of het materiaal bestaat voordat je het toevoegt aan de material_workorder
+            if(Material::find($materialId)) {
+                $workOrder->material_amount()->create([
+                    'material_id' => $materialId,
+                    'material_amount' => $material_amount,
+                ]);
+            }
+        }
+    
+        // Verdere logica of redirects hier...
+    
+        return redirect()->route('dashboard');
     }
 
     /**

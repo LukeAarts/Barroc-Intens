@@ -14,11 +14,17 @@ class WorkOrder extends Model
 
     public function materials()
     {
-        return $this->hasMany(Material::class);
+        return $this->belongsToMany(Material::class, 'material_workorder', 'workorder_id', 'material_id')
+            ->withPivot('material_amount');
     }
 
     public function user()
     {
-        return $this->belongsTo(WorkOrder::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function material_amount()
+    {
+        return $this->hasMany(MaterialWorkOrder::class, 'workorder_id', 'id');
     }
 }
