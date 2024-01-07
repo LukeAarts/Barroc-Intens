@@ -109,4 +109,12 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenance.show', $maintenanceAppointment->id);
     }
 
+    public function destroy($id)
+    {
+        $maintenanceAppointment = Maintenance::findOrFail($id);
+        $maintenanceAppointment->delete();
+
+        return redirect()->route('maintenance.fullcalendar')->with('success', 'Afspraak succesvol verwijderd');
+    }
+
 }

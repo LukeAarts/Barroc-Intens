@@ -14,5 +14,11 @@
     <p><strong>Opmerkingen:</strong> {{$maintenanceAppointment->remark}}</p>
     <p><strong>Type:</strong> {{$maintenanceAppointment->maintenance_type}}</p>
     <a href="{{ route('maintenance.edit', $maintenanceAppointment->id) }}" class="btn btn-primary">Bewerk</a>
+
+    <form method="post" action="{{ route('maintenance.destroy', $maintenanceAppointment->id) }}" style="display: inline-block;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je deze afspraak wilt verwijderen?')">Verwijderen</button>
+    </form>
 </body>
 </html>
