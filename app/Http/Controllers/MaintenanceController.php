@@ -70,10 +70,20 @@ class MaintenanceController extends Controller
     public function edit($id)
     {
         $maintenanceAppointment = Maintenance::findOrFail($id);
-        
-
-        return view('maintenance.edit')->with('maintenanceAppointment', $maintenanceAppointment);
+        $companies = Company::all();
+        $categories = Category::all();
+        $users = User::all();
+        $maintenanceTypes = ['storingsaanvragen', 'routinematige_bezoeken']; 
+    
+        return view('maintenance.edit')->with([
+            'maintenanceAppointment' => $maintenanceAppointment,
+            'companies' => $companies,
+            'categories' => $categories,
+            'users' => $users,
+            'maintenanceTypes' => $maintenanceTypes,
+        ]);
     }
+    
 
     public function update(Request $request, $id)
     {
