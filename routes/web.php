@@ -9,6 +9,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\WorkOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
+    Route::resource('maintenance/work_orders', WorkOrderController::class);
 });
 
 require __DIR__ . '/auth.php';
