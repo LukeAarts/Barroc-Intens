@@ -85,4 +85,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(LeaseContract::class);
     }
+
+    public function work_orders()
+    {
+        return $this->hasMany(WorkOrder::class);
+    }
 }

@@ -24,15 +24,29 @@
                 events: [
                     @foreach($maintenanceAppointments as $event)
                         {
+                            id: '{{ $event->id }}',
                             title: '{{ $event->title }}',
                             start: '{{ $event->start_date }}',
                             end: '{{ $event->end_date }}',
+                            backgroundColor: '{{ $event->background_color }}',
                         },
                     @endforeach
-                ]
+                ],
+                editable: true,
+                eventClick: function(info) {
+                    var eventId = info.event.id;
+
+                    // Gebruik Laravel-route om de juiste URL op te bouwen
+                    var showUrl = '{{ route("maintenance.show", ":id") }}';
+                    showUrl = showUrl.replace(':id', eventId);
+
+                    // Navigeer naar de detailspagina
+                    window.location.href = showUrl;
+                },
+
             });
             calendar.render();
         });
-    </script>
+    </script>    
 </body>
 </html>
