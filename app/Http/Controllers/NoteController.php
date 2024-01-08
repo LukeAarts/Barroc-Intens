@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Company;
 use App\Models\User;
 
 
@@ -79,6 +81,7 @@ class NoteController extends Controller
 
     public function userNotes(User $user)
     {
+        $users = User::all();
         $notes = $user->notes;
         return view('notes.user_notes', compact('user', 'notes'));
     }

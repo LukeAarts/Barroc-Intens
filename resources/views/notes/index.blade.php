@@ -6,8 +6,8 @@
         @foreach($users as $user)
             <li>
                 <p>{{ $user->name }}</p>
-                <a href="{{ route('user.notes', $user) }}">Bekijk Notities</a>
-                <a href="{{ route('notes.create', ['user_id' => $user->id]) }}">Maak Notitie</a>
+                <a href="{{ route('user.notes', $user) }}">Bekijk Klant</a>
+                
             </li>
         @endforeach
     </ul>
