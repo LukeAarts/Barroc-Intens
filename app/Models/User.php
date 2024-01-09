@@ -56,10 +56,18 @@ class User extends Authenticatable
         return $this->hasMany(Quotation::class);
     }
 
+    
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
+    
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'author_id');
+    }    
+    
+
 
     public function hasRole(string $role): bool
     {
@@ -76,10 +84,7 @@ class User extends Authenticatable
         return $this->hasMany(Note::class, 'author_id');
     }
 
-    public function notes()
-    {
-        return $this->hasMany(Note::class, 'author_id');
-    }
+
 
     public function lease_contracts()
     {

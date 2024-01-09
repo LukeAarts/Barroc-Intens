@@ -1,37 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <table>
 
-    
-        <tr>
-            <th>-Bedrijfsinfo-</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Bedrijfsnaam</th>
-        </tr>
-        <tr>
-            <th>Straat</th>
+    <h1>Bedrijfsinfo van {{ $user->name }}</h1>
 
-        </tr>
-        <tr>
-            <th>Huisnummer</th>
-        </tr>
-        <tr>
-            <th>Postcode</th>
-        </tr>
-        <tr>
-            <th>Stad</th>
-        </tr>
-        <tr>
-            <th>Telefoonnummer</th>
-        </tr>
+    <table class="table-auto border-collapse border">
+        <thead>
+            <tr>
+                <th class="border py-2 px-4">ID</th>
+                <th class="border py-2 px-4">Bedrijfsnaam</th>
+                <th class="border py-2 px-4">Straat</th>
+                <th class="border py-2 px-4">Huisnummer</th>
+                <th class="border py-2 px-4">Postcode</th>
+                <th class="border py-2 px-4">Stad</th>
+                <th class="border py-2 px-4">Telefoonnummer</th>
+                <th class="border py-2 px-4">BKR Check</th>
+                <th class="border py-2 px-4">BKR gecheckt op</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($companies as $company)
+                <tr>
+                    <td class="border py-2 px-4">{{$company->id}}</td>
+                    <td class="border py-2 px-4">{{$company->name}}</td>
+                    <td class="border py-2 px-4">{{$company->street}}</td>
+                    <td class="border py-2 px-4">{{$company->house_number}}</td>
+                    <td class="border py-2 px-4">{{$company->zipcode}}</td>
+                    <td class="border py-2 px-4">{{$company->city}}</td>
+                    <td class="border py-2 px-4">{{$company->phonenumber}}</td>
+                    <td class="border py-2 px-4">
+                    
+                        <form method="post" action="{{ route('finances.update', $company->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{ $company->id }}">
+                            <div class="flex items-center">
+                                <input type="checkbox" name="bkr_checked" {{ $company->bkr_checked ? 'checked' : '' }}>
+                                <button type="submit" class="text-black ml-2">Opslaan</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="border py-2 px-4">{{$company->bkr_checked_at}}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
-    
-    <h1>Notities van {{ $user->name }}</h1>
-    @if ($notes)
+
+    <h2>Notities van {{ $user->name }}</h2>
+    @if ($notes->count() > 0)
         <ul>
             @foreach($notes as $note)
                 <li>
@@ -40,7 +56,6 @@
                     <a href="{{ route('notes.edit', ['note' => $note]) }}">Bewerken</a>
                     <a href="{{ route('notes.destroy', ['note' => $note]) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $note->id }}').submit();">Verwijder</a>
 
-                    <!-- Verwijderingsformulier verbergen -->
                     <form id="delete-form-{{ $note->id }}" action="{{ route('notes.destroy', ['note' => $note]) }}" method="post" style="display: none;">
                         @csrf
                         @method('DELETE')

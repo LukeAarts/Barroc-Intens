@@ -14,11 +14,12 @@ class NoteController extends Controller
     // ...
 
     public function index()
-    {
-        $users = User::where('role', 'user')->get();
+{
+    $users = User::where('role', 'user')->with('company', 'notes')->get();
 
-        return view('notes.index', compact('users'));
-    }
+    return view('notes.index', compact('users'));
+}
+
 
 
     public function create()
@@ -65,6 +66,9 @@ class NoteController extends Controller
     {
         return view('notes.edit', compact('note'));
     }
+    
+    
+
 
     public function update(Request $request, Note $note)
     {
@@ -80,11 +84,13 @@ class NoteController extends Controller
     }
 
     public function userNotes(User $user)
-    {
-        $users = User::all();
+    {           
+        $companies = Company::all();
+
         $notes = $user->notes;
-        return view('notes.user_notes', compact('user', 'notes'));
+        return view('notes.user_notes', compact('user', 'companies', 'notes'));
     }
+    
 
 
     public function destroy(Note $note)

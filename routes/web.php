@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
+    
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
