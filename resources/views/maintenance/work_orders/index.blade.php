@@ -7,7 +7,8 @@
     <title>Werkbonnen Overzicht</title>
 </head>
 <body>
-    @role('Headmaintenance')
+    @auth
+    @if(auth()->user()->role === 'Headmaintenance')
     <h1>Werkbonnen Overzicht</h1>
 
     <table>
@@ -53,6 +54,8 @@
         </tbody>
     </table>
   
-    @endrole
+    @else
+            <p>Je hebt geen toegang tot deze pagina.</p>
+    @endauth
 </body>
 </html>
