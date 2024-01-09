@@ -52,8 +52,7 @@
             @endforeach
         </tbody>
     </table>
-    @else
-    <p>Je hebt geen toegang tot deze pagina.</p>
+  
     @endrole
 </body>
 </html>
