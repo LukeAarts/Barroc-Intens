@@ -7,7 +7,8 @@
     <title>Werkbonnen Overzicht</title>
 </head>
 <body>
-
+    
+    @if(auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin'))
     <h1>Werkbonnen Overzicht</h1>
 
     <table>
@@ -52,6 +53,10 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <p>je hebt geen toegang</p>
 
+    @endif
+   
 </body>
 </html>
