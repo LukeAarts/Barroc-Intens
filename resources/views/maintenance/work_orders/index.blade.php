@@ -7,7 +7,7 @@
     <title>Werkbonnen Overzicht</title>
 </head>
 <body>
-
+    @role('Headmaintenance')
     <h1>Werkbonnen Overzicht</h1>
 
     <table>
@@ -52,6 +52,8 @@
             @endforeach
         </tbody>
     </table>
-
+    @else
+    <p>Je hebt geen toegang tot deze pagina.</p>
+    @endrole
 </body>
 </html>
