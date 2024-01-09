@@ -15,5 +15,5 @@
         @method('DELETE')
         <button type="submit">Verwijderen</button>
     </form>
-    <a href="{{ route('notes.index') }}">Terug naar Aantekeningen</a>
+    <a href="{{ route('notes.index') }}">Terug naar klanten</a>
 @endsection

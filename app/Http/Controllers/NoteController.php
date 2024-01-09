@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Company;
 use App\Models\User;
 
 
@@ -13,15 +15,19 @@ class NoteController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
+
         return view('notes.index', compact('users'));
     }
 
+
     public function create()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
+
         return view('notes.create', compact('users'));
-    }
+}
+
 
 
     public function store(Request $request)
@@ -75,6 +81,7 @@ class NoteController extends Controller
 
     public function userNotes(User $user)
     {
+        $users = User::all();
         $notes = $user->notes;
         return view('notes.user_notes', compact('user', 'notes'));
     }

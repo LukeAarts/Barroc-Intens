@@ -9,6 +9,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\WorkOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
+
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
 
@@ -39,12 +40,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
+    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');      
+
     Route::resource('purchases_products', PurchaseController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
     Route::resource('invoice', InvoiceController::class);
     Route::resource('finances', FinanceController::class);
-    Route::resource('maintenance', MaintenanceController::class);
+    Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
+    Route::resource('maintenance', MaintenanceController::class)->except(['show']);
+    Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
+ 
 });
 
 require __DIR__ . '/auth.php';
