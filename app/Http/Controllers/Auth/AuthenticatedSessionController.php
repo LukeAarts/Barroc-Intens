@@ -41,6 +41,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('sales.dashboard');
         } elseif ($user->hasRole('Maintenance')) {
             return redirect()->route('maintenance.index');
+        } elseif ($user->hasRole('Headmaintenance')) {
+            return redirect()->route('maintenance.index');
         } elseif ($user->hasRole('Inventory')) {
             return redirect()->route('purchases_products.index'); //is inkoop
         } elseif ($user->hasRole('Customer')) {
