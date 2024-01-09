@@ -55,6 +55,6 @@ class CustomerRegistration extends Mailable
 
     public function build()
     {
-        return $this->view('mails.customer-registratie');
+        return $this->view('mails.customer-registration');
     }
 }

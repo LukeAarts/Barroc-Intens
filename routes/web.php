@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ProductController;
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
+
+    Route::get('/register_two', [CustomerController::class, 'register']);
  
 });
 

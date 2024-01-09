@@ -13,12 +13,12 @@ class CustomerController extends Controller
     {
         // Logica om een klant aan te maken in de database
 
-        $customer = User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'role' => request('role')
-            // andere velden die je nodig hebt
-        ]);
+        // $customer = User::create([
+        //     'name' => request('name'),
+        //     'email' => request('email'),
+        //     'role' => request('role')
+        //     // andere velden die je nodig hebt
+        // ]);
 
         // Verstuur registratie-e-mail
         Mail::to($customer->email)->send(new CustomerRegistration($customer));
