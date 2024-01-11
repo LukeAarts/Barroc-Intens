@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 
@@ -35,8 +37,15 @@ class CustomerController extends Controller
         ]);
 
         $token = Str::random(40); 
+
+        DB::table('password_reset_tokens')->insert([
+            'email' => $request->input('email'),
+            'token' => Hash::make($token),
+            'created_at' => now(),
+        ]);
     
         // Verstuur registratie-e-mail
+        // token opslaan in password_resets table
         $resetUrl = route('password.reset', ['token' => $token]);
         Mail::to($customer->email)->send(new CustomerRegistration($customer, $resetUrl, $token));
 
