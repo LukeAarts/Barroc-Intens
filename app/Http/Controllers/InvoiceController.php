@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstallInvoice;
+use App\Models\Product;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,8 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        return view('invoice.create', ['quote' => Quotation::where('id', $id)->firstOrFail()]);
+        $invoice = Quotation::where('id', $id)->firstOrFail();
+        return view('invoice.create', ['quote' => $invoice, 'product' => Product::where('id', $invoice->products_id)->firstOrFail()]);
     }
 
     /**
