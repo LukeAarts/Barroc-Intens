@@ -84,7 +84,7 @@
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="note">
                                         notitie
                                     </label>
-                                    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="note" id="note" type="textarea" placeholder="Extra notitie"></textarea>
+                                    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="note" id="note" type="textarea" placeholder="Extra notitie" required></textarea>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <input type="submit" class="mt-4 inline-block border-2 border-yellow-400 hover:bg-yellow-400 duration-200 text-black font-bold py-2 px-6 rounded-full" value="Verstuur"/>
