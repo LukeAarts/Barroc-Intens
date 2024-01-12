@@ -41,6 +41,10 @@
                         </form>
                     </td>
                     <td class="border py-2 px-4">{{$company->bkr_checked_at}}</td>
+
+                    <td class="border py-2 px-4">
+                    <a href="{{ route('notes.editCompany', $company->id) }}" class="text-blue-500">Bewerk</a>
+                </td>
                 </tr>
             @endforeach
         </tbody>

@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
+    Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
+    Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
+    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
+
+
+
     
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
