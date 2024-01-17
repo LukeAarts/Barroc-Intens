@@ -34,6 +34,11 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('customers/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
+    Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
+
+
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
     Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
@@ -41,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
 
 
-
+    
     
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

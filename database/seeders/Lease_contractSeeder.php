@@ -13,8 +13,6 @@ class Lease_contractSeeder extends Seeder
      */
     public function run(): void
     {
-
-
         LeaseContract::create([
 
             'name' => 'order1',
@@ -22,10 +20,6 @@ class Lease_contractSeeder extends Seeder
             'type' => 'maandelijks',
             'is_signed' => false,
             'customer_id' => 5,
-
-
-
-
         ]);
     }
 }

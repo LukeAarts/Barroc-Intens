@@ -52,6 +52,9 @@
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <li><a href="{{route('invoice.index')}}" class="{{ request()->is('invoice*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Facturen</a></li>
                 @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Customer') || \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+                    <li><a href="{{route('customers.invoices')}}" class="{{ request()->is('customers*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Facturen</a></li>
+                @endif
                 
             @endif
         </ul>
