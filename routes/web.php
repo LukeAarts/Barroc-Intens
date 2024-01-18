@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
     Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
@@ -46,9 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
     Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');    
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
