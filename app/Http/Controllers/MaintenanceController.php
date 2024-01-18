@@ -23,7 +23,8 @@ class MaintenanceController extends Controller
     public function fullcalander()
     {
         $maintenanceAppointments = Maintenance::all();
-        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin')) {
+        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin' || auth()->user()->role === 'Maintenance')) {
+
             return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
         } else {
             return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
