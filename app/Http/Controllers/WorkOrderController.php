@@ -39,6 +39,7 @@ class WorkOrderController extends Controller
             return view('maintenance/work_orders.create', compact('materials', 'users'));
         } else {
 
+
             return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
         }
     }
