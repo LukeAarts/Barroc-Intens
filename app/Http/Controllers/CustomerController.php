@@ -24,6 +24,11 @@ class CustomerController extends Controller
         return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices]);
     }
 
+    public function lease_contracts()
+    {
+        return view('customers.lease_contracts');
+    }
+
     public function register()
     {
         // Logica om een klant aan te maken in de database

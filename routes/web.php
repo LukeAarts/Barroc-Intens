@@ -37,17 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
     Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
+    Route::get('customers/lease_contracts', [CustomerController::class, 'lease_contracts'])->name('customers.lease_contracs');
 
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
     Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
     Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
-    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
-
-
-    
-    
+    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');    
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
