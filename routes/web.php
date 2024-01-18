@@ -23,6 +23,7 @@ use App\Http\Controllers\WorkOrderController;
 |
 */
 
+Route::view('/noAcces', 'noAcces')->name('no_access');
 Route::get('/', function () {
     return view('homepage');
 })->name("home");
@@ -42,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -50,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
-    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');      
+    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
 
     Route::resource('purchases_products', PurchaseController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
@@ -62,7 +63,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
 
     Route::get('/register_two', [CustomerController::class, 'register']);
- 
 });
 
 require __DIR__ . '/auth.php';
