@@ -98,6 +98,36 @@ class NoteController extends Controller
         $note->delete();
         return redirect()->route('notes.index')->with('success', 'Notitie succesvol verwijderd.');
     }
+
+
+
+        public function editCompany(Company $company)
+    {
+        return view('notes.editCompany', compact('company'));
+    }
+
+    public function updateCompany(Request $request, Company $company)
+    {
+        $request->validate([
+            'name' => 'required',
+            'street' => 'required',
+            'house_number' => 'required',
+            'zipcode' => 'required',
+            'city' => 'required',
+            'phonenumber' => 'required',
+            // Voeg hier andere validatieregels toe
+        ]);
+
+        $company->update($request->all());
+
+        return redirect()->route('notes.index')->with('success', 'Bedrijfsinformatie succesvol bijgewerkt.');
+    }
+
+
+
     
+
+
 }
+    
 

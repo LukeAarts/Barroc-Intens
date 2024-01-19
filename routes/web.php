@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Password;
 |
 */
 
+Route::view('/noAcces', 'noAcces')->name('no_access');
 Route::get('/', function () {
     return view('homepage');
 })->name("home");
@@ -37,7 +38,13 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
-    
+    Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
+    Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
+    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
+
+
+
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -45,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
-    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');      
+    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
 
     Route::resource('purchases_products', PurchaseController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
@@ -55,9 +62,6 @@ Route::middleware('auth')->group(function () {
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
-
-
-
 });
 
 Route::resource('customers', CustomerController::class)->only(['create', 'store']);

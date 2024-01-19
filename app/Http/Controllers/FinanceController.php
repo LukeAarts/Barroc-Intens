@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\LeaseContract;
+
 use Illuminate\Http\Request;
 
 class FinanceController extends Controller

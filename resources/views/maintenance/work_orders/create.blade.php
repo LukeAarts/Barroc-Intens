@@ -1,6 +1,11 @@
+
 @extends('layouts.app')
 
 @section('content')
+
+
+ 
+
     <div class="container">
         <h1>Welkom, {{ Auth::user()->name }}</h1>
 
@@ -78,3 +83,5 @@
         });
     </script>
 @endsection
+
+

@@ -13,13 +13,19 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $categories = Category::all();
 
-        return view('purchases_products.index', [
-            'products' => $products,
-            'categories' => $categories
-        ]);
+        if (auth()->check() && (auth()->user()->role === 'Inventory' || auth()->user()->role === 'Admin')) {
+
+            $products = Product::all();
+            $categories = Category::all();
+
+            return view('purchases_products.index', [
+                'products' => $products,
+                'categories' => $categories
+            ]);
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
     }
 
     /**
@@ -27,12 +33,17 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        $categories = Category::all();
-        return view('purchases_products.create', [
-            'products' => $products,
-            'categories' => $categories
-        ]);
+
+        if (auth()->check() && (auth()->user()->role === 'Inventory' || auth()->user()->role === 'Admin')) {
+            $products = Product::all();
+            $categories = Category::all();
+            return view('purchases_products.create', [
+                'products' => $products,
+                'categories' => $categories
+            ]);
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
     }
 
     /**
@@ -40,11 +51,16 @@ class PurchaseController extends Controller
      */
     public function edit(string $id)
     {
-        $products = Product::where('id', $id)->first();
-        $categories = Category::all();
-        return view('purchases_products.edit', [
-            'product' => $products,
-            'categories' => $categories
-        ]);
+        if (auth()->check() && (auth()->user()->role === 'Inventory' || auth()->user()->role === 'Admin')) {
+
+            $products = Product::where('id', $id)->first();
+            $categories = Category::all();
+            return view('purchases_products.edit', [
+                'product' => $products,
+                'categories' => $categories
+            ]);
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
     }
 }

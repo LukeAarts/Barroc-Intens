@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstallInvoice;
+use App\Models\Product;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\InvoiceMail;
+use Illuminate\Support\Facades\Mail;
 
 class InvoiceController extends Controller
 {
@@ -61,7 +64,8 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        return view('invoice.create', ['quote' => Quotation::where('id', $id)->firstOrFail()]);
+        $invoice = Quotation::where('id', $id)->firstOrFail();
+        return view('invoice.create', ['quote' => $invoice, 'product' => Product::where('id', $invoice->products_id)->firstOrFail()]);
     }
 
     /**
@@ -69,7 +73,9 @@ class InvoiceController extends Controller
      */
     public function edit(string $id)
     {
-        return view('invoice.show', ["invoice" => InstallInvoice::with('customer')->with('quotation')->with('finance')->where('id', $id)->firstOrFail()]);
+        $invoice = InstallInvoice::with('customer')->with('quotation')->with('finance')->where('id', $id)->firstOrFail();
+        Mail::send(new InvoiceMail($invoice));
+        return view('invoice.show', ["invoice" => $invoice]);
     }
 
 
