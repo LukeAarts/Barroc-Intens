@@ -1,10 +1,9 @@
 Beste {{ $customer->name }},
 
-Welkom bij ons systeem! Hier zijn je inloggegevens:
+Welkom bij ons systeem! Klik op onderstaande link om je wachtwoord in te stellen:
 
-E-mail: {{ $customer->email }}
-Wachtwoord: [wachtwoord-reset-link]
+<a href="{{ $resetUrl }}">Wachtwoord instellen</a>
+
 
 Bedankt,
-
-Barroc Intens
+Het Team

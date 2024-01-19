@@ -11,6 +11,7 @@ use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\WorkOrderController;
+use Illuminate\Support\Facades\Password;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +62,18 @@ Route::middleware('auth')->group(function () {
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
-
-    Route::get('/register_two', [CustomerController::class, 'register']);
 });
+
+Route::resource('customers', CustomerController::class)->only(['create', 'store']);
+
+// Voor het weergeven van het resetformulier
+Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+
+// Voor het verwerken van het POST-verzoek
+Route::post('reset-password', 'Auth\ResetPasswordController@reset')->name('password.reset.process');
+
+
+
 
 require __DIR__ . '/auth.php';
