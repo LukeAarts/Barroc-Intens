@@ -14,13 +14,16 @@ class CustomerRegistration extends Mailable
     use Queueable, SerializesModels;
 
     public $customer;
+    public $resetUrl;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($customer)
+    public function __construct($customer, $resetUrl, $token)
     {
         $this->customer = $customer;
+        $this->resetUrl = $resetUrl;
+        $this->token = $token;
     }
 
     /**
@@ -39,10 +42,9 @@ class CustomerRegistration extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.customer-registration', // Verander dit naar de juiste view-naam
         );
     }
-
     /**
      * Get the attachments for the message.
      *
