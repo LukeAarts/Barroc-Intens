@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
 use App\Models\Invoice;
+use App\Models\LeaseContract;
 use App\Models\ProductInvoice;
 use App\Models\User;
 
@@ -26,7 +27,14 @@ class CustomerController extends Controller
 
     public function lease_contracts()
     {
-        return view('customers.lease_contracts');
+        // Haal de ingelogde klant op
+        $customer = auth()->user(); // Dit veronderstelt dat de klant is ingelogd
+    
+        // Haal de leasecontracten op die behoren tot de ingelogde klant
+        $leaseContracts = LeaseContract::where('customer_id', $customer->id)->get();
+    
+        // Geef de gegevens door aan de view
+        return view('customers.lease_contracts', ['leaseContracts' => $leaseContracts]);
     }
 
     public function register()
@@ -55,5 +63,12 @@ class CustomerController extends Controller
         return view('customers.show_invoice')->with(['invoice' => $invoice, 'productInvoice' => $productInvoice, 'customer' => $customer]);
     }
     
+    public function show_lease_contract($id)
+    {
+        $contract = LeaseContract::findOrFail($id);
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
+    
+        return view('customers.show_lease_contract')->with(['contract' => $contract, 'customer' => $customer]);
+    }
     
 }

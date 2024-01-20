@@ -41,7 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
     Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
-    Route::get('customers/lease_contracts', [CustomerController::class, 'lease_contracts'])->name('customers.lease_contracs');
+    Route::get('customers/lease_contracts', [CustomerController::class, 'lease_contracts'])->name('customers.lease_contracts');
+    Route::get('customers/lease_contracts/{id}', [CustomerController::class, 'show_lease_contract'])->name('customers.show_lease_contract');
 
 
     Route::resource('notes', NoteController::class);
