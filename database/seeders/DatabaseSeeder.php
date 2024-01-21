@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MaterialSeeder::class,
             InvoiceSeeder::class,
             ProductInvoiceSeeder::class,
+            LeaseContractProductSeeder::class,
 
         ]);
         \App\Models\User::factory(10)->create();

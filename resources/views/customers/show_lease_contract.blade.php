@@ -5,18 +5,20 @@
         <h2 class="text-2xl font-bold mb-4 border-b pb-2">Contract en Klant Details</h2>
         <div>
             <ul>
-                <li><strong>Naam contract:</strong> {{ $contract->name }}</li>
-                <li><strong>Beschrijving:</strong> {{ $contract->description }}</li>
-                <li><strong>Startdatum:</strong> {{ $contract->start_date }}</li>
-                <li><strong>Einddatum:</strong> {{ $contract->end_date }}</li>
-                <li><strong>Type:</strong> {{ $contract->type }}</li>
-                <li><strong>Ondertekend:</strong> @if ($contract->is_signed) Ja @else Nee @endif</li>
+                <li class="pb-2"><strong>Naam contract:</strong> {{ $contract->name }}</li>
+                <li class="pb-10"><strong>Beschrijving:</strong> {{ $contract->description }}</li>
+                <li class=""><strong>Startdatum:</strong> {{ $contract->start_date }}</li>
+                <li class="pb-10"><strong>Einddatum:</strong> {{ $contract->end_date }}</li>
+
+                <li><strong>Producten:</strong>@foreach($products as $product) {{$product->name}},@endforeach</li>
+                <li class="pb-10"><strong>Type:</strong> {{ $contract->type }}</li>
+                <li class="pb-10 border-b pb-2"><strong>Ondertekend:</strong> @if ($contract->is_signed) Ja @else Nee @endif</li>
             </ul>
         </div>
         <div class="mt-4">
             <ul>
-                <li><strong>Naam klant:</strong> {{$customer->name}}</li>
-                <!-- Voeg hier meer klantdetails toe op basis van je eigen gegevens -->
+                <li class="pb-2"><strong>Naam klant:</strong> {{$customer->name}}</li>
+                <li><strong>Bedrijf:</strong> {{$company->name}}</li>
             </ul>
         </div>
     </div>

@@ -22,5 +22,35 @@ class ProductSeeder extends Seeder
             'product_category_id' => 2
 
         ]);
+
+        Product::create([
+
+            'name' => 'machine2',
+            'description' => 'beschrijving machine 2',
+            'price' => '2.50',
+            'stock' => 18,
+            'product_category_id' => 2
+
+        ]);
+
+        Product::create([
+
+            'name' => 'machine3',
+            'description' => 'beschrijving machine 3',
+            'price' => '15',
+            'stock' => 10,
+            'product_category_id' => 2
+
+        ]);
+
+        Product::create([
+
+            'name' => 'machine4',
+            'description' => 'beschrijving machine 4',
+            'price' => '12',
+            'stock' => 11,
+            'product_category_id' => 2
+
+        ]);
     }
 }

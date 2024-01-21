@@ -15,7 +15,7 @@ class LeaseContract extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'lease_contracts_products', 'lease_contract_id', 'product_id');
     }
 
     public function user()

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
+use App\Models\Company;
 use App\Models\Invoice;
 use App\Models\LeaseContract;
+use App\Models\Product;
 use App\Models\ProductInvoice;
 use App\Models\User;
 
@@ -19,10 +21,11 @@ class CustomerController extends Controller
 
     public function invoices()
     {
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
         $invoices = Invoice::all();
         $productInvoices = ProductInvoice::all();
         
-        return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices]);
+        return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices, 'customer' => $customer]);
     }
 
     public function lease_contracts()
@@ -32,6 +35,7 @@ class CustomerController extends Controller
     
         // Haal de leasecontracten op die behoren tot de ingelogde klant
         $leaseContracts = LeaseContract::where('customer_id', $customer->id)->get();
+
     
         // Geef de gegevens door aan de view
         return view('customers.lease_contracts', ['leaseContracts' => $leaseContracts]);
@@ -57,18 +61,33 @@ class CustomerController extends Controller
     public function show_invoice($id)
     {
         $invoice = Invoice::findOrFail($id);
-        $customer = User::findOrFail($id);
-        $productInvoice = ProductInvoice::where('id', $id)->first(); // Pas dit aan op basis van je relatie tussen Invoice en ProductInvoice
+        $product = Product::findOrFail($id);
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
+        $productInvoice = ProductInvoice::where('id', $id)->first();
+        $contracts = LeaseContract::where('customer_id', $customer->id)->get();
         
-        return view('customers.show_invoice')->with(['invoice' => $invoice, 'productInvoice' => $productInvoice, 'customer' => $customer]);
+        return view('customers.show_invoice')->with(['invoice' => $invoice, 'productInvoice' => $productInvoice, 'customer' => $customer, 'contracts' => $contracts, 'product' => $product]);
     }
     
     public function show_lease_contract($id)
     {
         $contract = LeaseContract::findOrFail($id);
+        $company = Company::findOrFail($id);
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
+        $products = $contract->products; // Gebruik de relatie om producten op te halen
+
+        // dd($products);
     
-        return view('customers.show_lease_contract')->with(['contract' => $contract, 'customer' => $customer]);
+        return view('customers.show_lease_contract')->with([
+            'contract' => $contract,
+            'customer' => $customer,
+            'company' => $company,
+            'products' => $products,
+        ]);
     }
+    
+    
+    
+
     
 }
