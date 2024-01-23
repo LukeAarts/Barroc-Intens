@@ -85,10 +85,9 @@ class User extends Authenticatable
     }
 
 
-
     public function lease_contracts()
     {
-        return $this->hasMany(LeaseContract::class);
+        return $this->hasMany(LeaseContract::class, 'customer_id');
     }
 
     public function work_orders()

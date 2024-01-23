@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AccountDeleteRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
@@ -58,14 +59,16 @@ class CustomerController extends Controller
         return "Klant geregistreerd en e-mail verstuurd.";
     }
 
+    
+
+
     public function show_invoice($id)
     {
         $invoice = Invoice::findOrFail($id);
         $product = Product::findOrFail($id);
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
         $productInvoice = ProductInvoice::where('id', $id)->first();
-        $contracts = LeaseContract::where('customer_id', $customer->id)->get();
-        
+                
         return view('customers.show_invoice')->with(['invoice' => $invoice, 'productInvoice' => $productInvoice, 'customer' => $customer, 'contracts' => $contracts, 'product' => $product]);
     }
     

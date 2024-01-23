@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
 
     Route::get('/register_two', [CustomerController::class, 'register']);
+
  
 });
 

@@ -20,6 +20,6 @@ class LeaseContract extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'customer_id'); // Gebruik 'customer_id' in plaats van 'user_id'
     }
 }
