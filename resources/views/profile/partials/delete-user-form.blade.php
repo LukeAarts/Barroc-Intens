@@ -30,9 +30,13 @@
             {{ __('Delete Account') }}
         </x-danger-button>
     @else
-        <x-primary-button x-on:click="">
+    <form method="POST" action="{{ route('customers.account-delete-request') }}">
+        @csrf
+        <!-- Andere formuliervelden -->
+        <x-primary-button type="submit">
             {{ __('Verzoek om alle contracten te beëindigen') }}
         </x-primary-button>
+    </form>
         
     @endif
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AccountDeleteRequest;
+use App\Mail\ContractTerminatedConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
@@ -59,7 +60,41 @@ class CustomerController extends Controller
         return "Klant geregistreerd en e-mail verstuurd.";
     }
 
+    public function accountDeleteRequest()
+    {
+        // Veronderstel dat je de ingelogde klant ophaalt
+        $customer = auth()->user();
+
+        // Veronderstel dat je de sales medewerker ophaalt (bijvoorbeeld de eerste gebruiker met de rol 'Sales')
+        $salesEmployee = User::where('role', 'Sales')->first();
+
+        // Hier kun je de logica toevoegen om de accountDeleteUrl in te stellen, afhankelijk van jouw implementatie
+        $accountDeleteUrl = 'customers.account-delete-confirm'; // Vervang dit met jouw eigen logica
+
+        // Stuur het account delete verzoek naar de sales medewerker
+        Mail::to($salesEmployee->email)->send(new AccountDeleteRequest($customer, $accountDeleteUrl, $salesEmployee));
+
+        return "Verzoek aangevraagd";
+    }
+
+    public function showAccountDeleteConfirmation()
+    {
+        return view('customers.account-delete-confirmation');
+    }
+
+    public function accountDelete(Request $request)
+    {
+        // Haal de klant op basis van de ingelogde gebruiker
+        $customer = auth()->user();
     
+        // Vind en verwijder alle contracten van deze klant
+        LeaseContract::where('customer_id', $customer->id)->delete();
+    
+        // Voer verdere logica uit, zoals het versturen van een bevestigingsmail, etc.
+        Mail::to($customer->email)->send(new ContractTerminatedConfirmation($customer));
+    
+        return "Contracten beëindigd";
+    }
 
 
     public function show_invoice($id)

@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
     Route::get('customers/lease_contracts', [CustomerController::class, 'lease_contracts'])->name('customers.lease_contracts');
     Route::get('customers/lease_contracts/{id}', [CustomerController::class, 'show_lease_contract'])->name('customers.show_lease_contract');
+    Route::post('customers/account-delete-request', [CustomerController::class, 'accountDeleteRequest'])->name('customers.account-delete-request');
+    Route::get('customers/account-delete-confirm', [CustomerController::class, 'accountDelete'])->name('customers.account-delete-confirm');
 
 
     Route::resource('notes', NoteController::class);

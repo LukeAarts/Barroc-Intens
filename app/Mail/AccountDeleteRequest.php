@@ -9,19 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerRegistration extends Mailable
+class AccountDeleteRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $customer;
+    public $accountDeleteUrl;
+    public $salesEmployee;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($customer)
+    public function __construct($customer, $accountDeleteUrl, $salesEmployee)
     {
         $this->customer = $customer;
-
+        $this->accountDeleteUrl = $accountDeleteUrl;
+        $this->salesEmployee = $salesEmployee;
     }
 
     /**
@@ -30,7 +33,7 @@ class CustomerRegistration extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Registration',
+            subject: 'Account Delete Request',
         );
     }
 
@@ -40,7 +43,7 @@ class CustomerRegistration extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.account-delete-request', // Pas de weergavenaam hier aan
         );
     }
 
@@ -56,6 +59,6 @@ class CustomerRegistration extends Mailable
 
     public function build()
     {
-        return $this->view('mails.customer-registration');
+        return $this->view('mails.account-delete-request');
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerRegistration extends Mailable
+class ContractTerminatedConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +21,6 @@ class CustomerRegistration extends Mailable
     public function __construct($customer)
     {
         $this->customer = $customer;
-
     }
 
     /**
@@ -30,7 +29,7 @@ class CustomerRegistration extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Registration',
+            subject: 'Contract Beëindigd Bevestiging',
         );
     }
 
@@ -40,7 +39,7 @@ class CustomerRegistration extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.contract-terminated-confirmation',
         );
     }
 
@@ -56,6 +55,6 @@ class CustomerRegistration extends Mailable
 
     public function build()
     {
-        return $this->view('mails.customer-registration');
+        return $this->view('mails.contract-terminated-confirmation');
     }
 }
