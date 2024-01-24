@@ -90,6 +90,11 @@ class User extends Authenticatable
         return $this->hasMany(LeaseContract::class, 'customer_id');
     }
 
+    public function malfunction_requests()
+    {
+        return $this->hasMany(MalfunctionRequest::class, 'customer_id');
+    }
+
     public function work_orders()
     {
         return $this->hasMany(WorkOrder::class);

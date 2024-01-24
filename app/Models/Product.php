@@ -36,4 +36,9 @@ class Product extends Model
     {
         return $this->belongsToMany(LeaseContract::class, 'lease_contracts_products', 'product_id', 'lease_contract_id');
     }
+
+    public function malfunctionRequests()
+    {
+        return $this->belongsToMany(MalfunctionRequest::class, 'malfunction_requests_products');
+    }
 }

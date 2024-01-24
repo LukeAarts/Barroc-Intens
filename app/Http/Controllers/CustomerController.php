@@ -10,6 +10,7 @@ use App\Mail\CustomerRegistration;
 use App\Models\Company;
 use App\Models\Invoice;
 use App\Models\LeaseContract;
+use App\Models\MalfunctionRequest;
 use App\Models\Product;
 use App\Models\ProductInvoice;
 use App\Models\User;
@@ -79,8 +80,40 @@ class CustomerController extends Controller
 
     public function malfunction_request()
     {
-        return view('customers.malfunction_request');
+        $products = Product::all();
+        return view('customers.malfunction_request')->with([
+            'products' => $products
+        ]);
     }
+
+    public function malfunction_request_store(Request $request)
+    {
+        // Haal de ingelogde klant op
+        $customer = auth()->user();
+    
+        // Haal het bedrijf van de klant op
+        $company = Company::where('user_id', $customer->id)->first();
+    
+        // Maak de storingsaanvraag aan
+        $malfunction = MalfunctionRequest::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'comments' => $request->input('comments'),
+            'customer_id' => $customer->id,
+            'company_id' => $company->id,
+        ]);
+    
+        // Haal het bestaande product op basis van het geselecteerde product_id in het formulier
+        $product = Product::find($request->input('product_id'));
+    
+        // Voeg het product toe aan de storingsaanvraag
+        $malfunction->products()->attach($product->id);
+    
+        // Voer verdere logica uit, indien nodig
+    
+        return "Storingsaanvraag aangemaakt";
+    }
+       
 
     public function showAccountDeleteConfirmation()
     {

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('comments');
-            $table->integer('product_id')->references('id')->on('custom_products');
             $table->integer('customer_id')->references('id')->on('users')->where('role' === 'Customer');;
             $table->integer('company_id')->references('id')->on('companies');
             $table->timestamps();
