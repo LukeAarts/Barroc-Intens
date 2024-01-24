@@ -103,9 +103,19 @@ class CustomerController extends Controller
         $product = Product::findOrFail($id);
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
         $productInvoice = ProductInvoice::where('id', $id)->first();
-                
-        return view('customers.show_invoice')->with(['invoice' => $invoice, 'productInvoice' => $productInvoice, 'customer' => $customer, 'contracts' => $contracts, 'product' => $product]);
+        
+        // Haal alle gekoppelde contracten van de ingelogde klant op
+        $contracts = LeaseContract::where('customer_id', $customer->id)->get();
+        
+        return view('customers.show_invoice')->with([
+            'invoice' => $invoice,
+            'productInvoice' => $productInvoice,
+            'customer' => $customer,
+            'contracts' => $contracts,
+            'product' => $product,
+        ]);
     }
+    
     
     public function show_lease_contract($id)
     {
