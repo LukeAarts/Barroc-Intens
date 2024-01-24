@@ -8,7 +8,7 @@
                 @foreach($products as $product)
                     <div class="p-6 bg-white rounded-lg shadow-md">
                         @isset($product->image_path)
-                            <img src="{{ asset('storage/' . $product->image_path) }}" class="w-54 rounded-md drop-shadow-lg" alt="{{ $product->name }} afbeelding">
+                            <img src="{{ asset('images/' . $product->image_path) }}" class="w-54 rounded-md drop-shadow-lg" alt="{{ $product->name }} afbeelding">
                         @else
                             <img src="{{ asset('images/no_image_.png') }}" class="w-54 rounded-md drop-shadow-lg" alt="Placeholder afbeelding">
                         @endisset
