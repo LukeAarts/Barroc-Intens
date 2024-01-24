@@ -19,7 +19,8 @@ class ProductSeeder extends Seeder
             'description' => 'beschrijving machine 1',
             'price' => '5',
             'stock' => 8,
-            'product_category_id' => 2
+            'product_category_id' => 2,
+            'image_path' => 'machine-bit-deluxe.png'
 
         ]);
     }
