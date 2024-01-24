@@ -77,6 +77,11 @@ class CustomerController extends Controller
         return "Verzoek aangevraagd";
     }
 
+    public function malfunction_request()
+    {
+        return view('customers.malfunction_request');
+    }
+
     public function showAccountDeleteConfirmation()
     {
         return view('customers.account-delete-confirmation');

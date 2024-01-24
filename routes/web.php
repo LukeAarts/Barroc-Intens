@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('customers/account-delete-request', [CustomerController::class, 'accountDeleteRequest'])->name('customers.account-delete-request');
     Route::get('customers/account-delete-confirm', [CustomerController::class, 'accountDelete'])->name('customers.account-delete-confirm');
 
+    Route::get('customers/malfunction_request', [CustomerController::class, 'malfunction_request'])->name('customers.malfunction_request');
+
 
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
