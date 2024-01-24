@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
     Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
 
+
+
     Route::resource('purchases_products', PurchaseController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
@@ -73,7 +75,7 @@ Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetForm
 // Voor het verwerken van het POST-verzoek
 Route::post('reset-password', 'Auth\ResetPasswordController@reset')->name('password.reset.process');
 
-
+Route::view('/privacy', 'privacy')->name('privacy');
 
 
 require __DIR__ . '/auth.php';
