@@ -3,7 +3,7 @@
 
     <div class="overflow-x-auto w-auto px-64">
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mb-12">
                 {{ session('success') }}
             </div>
         @endif
