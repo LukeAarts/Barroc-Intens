@@ -60,6 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
     Route::resource('invoice', InvoiceController::class);
+    Route::put('invoice/update-status/{id}', [InvoiceController::class, 'updateStatus'])->name('invoice.updateStatus');
+
+
     Route::resource('finances', FinanceController::class);
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);

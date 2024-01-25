@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="overflow-x-auto w-auto px-64">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table id="table" class="table">
             <!-- head -->
             <thead>
@@ -11,6 +17,7 @@
                 <th>Bedrijfsnaam</th>
                 <th>Prijs</th>
                 <th>Datum</th>
+                <th>Status</th> <!-- Nieuwe kolom voor de status -->
                 <th>Bekijk</th>
             </tr>
             </thead>
@@ -37,7 +44,19 @@
                         {{$invoice->created_at}}
                     </td>
                     <td>
-                        <a href="{{route('invoice.edit', $invoice->id)}}" class="btn btn-primary">Bekijk</a>
+                        <!-- Formulier om de status bij te werken -->
+                        <form method="POST" action="{{ route('invoice.updateStatus', $invoice->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="Niet betaald" {{ $invoice->status == 'Niet betaald' ? 'selected' : '' }}>Niet betaald</option>
+                                <option value="Betaald" {{ $invoice->status == 'Betaald' ? 'selected' : '' }}>Betaald</option>
+                            </select>
+                        </form>
+                        
+                    </td>
+                    <td>
+                        <a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-primary">Bekijk</a>
                     </td>
                 </tr>
             @endforeach
@@ -48,3 +67,4 @@
         </table>
     </div>
 @endsection
+
