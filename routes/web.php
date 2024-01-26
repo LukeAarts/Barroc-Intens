@@ -11,6 +11,7 @@ use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\WorkOrderController;
+use Illuminate\Support\Facades\Password;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use App\Http\Controllers\WorkOrderController;
 |
 */
 
+Route::view('/noAcces', 'noAcces')->name('no_access');
 Route::get('/', function () {
     return view('homepage');
 })->name("home");
@@ -58,21 +60,38 @@ Route::middleware('auth')->group(function () {
 
 
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
-    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');      
+    Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
+
+
 
     Route::resource('purchases_products', PurchaseController::class);
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
     Route::resource('invoice', InvoiceController::class);
+    Route::put('invoice/update-status/{id}', [InvoiceController::class, 'updateStatus'])->name('invoice.updateStatus');
+
+
     Route::resource('finances', FinanceController::class);
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
-
     Route::get('/register_two', [CustomerController::class, 'register']);
-
- 
 });
+
+Route::resource('customers', CustomerController::class)->only(['create', 'store']);
+
+// Voor het weergeven van het resetformulier
+Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+
+// Voor het verwerken van het POST-verzoek
+Route::post('reset-password', 'Auth\ResetPasswordController@reset')->name('password.reset.process');
+
+Route::view('/privacy', 'privacy')->name('privacy');
+
 
 require __DIR__ . '/auth.php';

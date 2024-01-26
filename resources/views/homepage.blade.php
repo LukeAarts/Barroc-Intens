@@ -41,7 +41,17 @@
       </div>
     </div>
   </div>
+  <!-- cookie privacy voorwaarden --> 
+  <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 text-center hidden">
+    <p class="text-sm">Deze website maakt gebruik van cookies. Gaat u akkoord met onze privacyvoorwaarden?</p>
+    <a href="/privacy" id="showPrivacyPolicy" class="text-gray-400 hover:text-white text-sm underline">Voorwaarden</a>
+    <button id="acceptCookies" class="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded-full">Ja</button>
+    <button id="rejectCookies" class="ml-2 inline-block border border-white text-white font-bold py-2 px-4 rounded-full">Nee</button>
+  </div>
+  <!-- cookie privacy voorwaarden -->
 
+
+  
   <!-- Diensten-sectie -->
   <section id="services" class="py-16">
     <div class="container mx-auto text-center">
@@ -80,13 +90,41 @@
 </html>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Hamburgermenu functionaliteit
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+   document.addEventListener('DOMContentLoaded', function () {
+  // Hamburgermenu functionaliteit
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
 
-    menuToggle.addEventListener('click', function () {
-      navMenu.classList.toggle('hidden');
-    });
+  menuToggle.addEventListener('click', function () {
+    navMenu.classList.toggle('hidden');
   });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Haal de cookie op als deze bestaat
+  const cookieAccepted = localStorage.getItem('cookieAccepted');
+
+  // Controleer of de cookie-melding al eerder is getoond
+  if (!cookieAccepted) {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptCookies = document.getElementById('acceptCookies');
+    const rejectCookies = document.getElementById('rejectCookies');
+
+    // Toon de cookie-melding
+    cookieBanner.classList.remove('hidden');
+
+    // Eventlistener voor het accepteren van cookies
+    acceptCookies.addEventListener('click', function () {
+      // Sla de cookie op en verberg de melding
+      localStorage.setItem('cookieAccepted', 'true');
+      cookieBanner.classList.add('hidden');
+    });
+
+    // Eventlistener voor het weigeren van cookies
+    rejectCookies.addEventListener('click', function () {
+      // Eventueel kun je hier extra acties toevoegen voor het geval de gebruiker cookies weigert
+      cookieBanner.classList.add('hidden');
+    });
+  }
+});
 </script>

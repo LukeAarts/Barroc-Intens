@@ -8,6 +8,7 @@ use App\Models\Quotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\InvoiceMail;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Mail;
 
 class InvoiceController extends Controller
@@ -76,6 +77,21 @@ class InvoiceController extends Controller
         $invoice = InstallInvoice::with('customer')->with('quotation')->with('finance')->where('id', $id)->firstOrFail();
         Mail::send(new InvoiceMail($invoice));
         return view('invoice.show', ["invoice" => $invoice]);
+    }
+
+
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Niet betaald,Betaald',
+        ]);
+    
+        $invoice = InstallInvoice::findOrFail($id);
+        $invoice->status = $request->input('status');
+        $invoice->save();
+    
+        return redirect()->back()->with('success', 'Status succesvol bijgewerkt.');
     }
 
 

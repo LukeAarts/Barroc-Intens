@@ -23,8 +23,12 @@ class MaintenanceController extends Controller
     public function fullcalander()
     {
         $maintenanceAppointments = Maintenance::all();
+        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin' || auth()->user()->role === 'Maintenance')) {
 
-        return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
+            return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
     }
 
     public function show(string $id)
@@ -40,7 +44,7 @@ class MaintenanceController extends Controller
         $categories = Category::all();
         $users = User::all();
         $maintenanceTypes = ['storingsaanvragen', 'routinematige_bezoeken']; // Aan te vullen met de daadwerkelijke onderhoudstypen
-    
+
         return view('maintenance.create', compact('companies', 'categories', 'maintenanceTypes', 'users'));
     }
 
@@ -59,7 +63,7 @@ class MaintenanceController extends Controller
 
         $validatedData['date_added'] = now();
 
-        
+
         // dd($validatedData);
 
         Maintenance::create($validatedData);
@@ -73,8 +77,8 @@ class MaintenanceController extends Controller
         $companies = Company::all();
         $categories = Category::all();
         $users = User::all();
-        $maintenanceTypes = ['storingsaanvragen', 'routinematige_bezoeken']; 
-    
+        $maintenanceTypes = ['storingsaanvragen', 'routinematige_bezoeken'];
+
         return view('maintenance.edit')->with([
             'maintenanceAppointment' => $maintenanceAppointment,
             'companies' => $companies,
@@ -83,7 +87,7 @@ class MaintenanceController extends Controller
             'maintenanceTypes' => $maintenanceTypes,
         ]);
     }
-    
+
 
     public function update(Request $request, $id)
     {
@@ -116,5 +120,4 @@ class MaintenanceController extends Controller
 
         return redirect()->route('maintenance.fullcalendar')->with('success', 'Afspraak succesvol verwijderd');
     }
-
 }

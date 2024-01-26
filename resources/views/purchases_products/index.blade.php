@@ -25,7 +25,7 @@
                 <td>{{$product->description}}</td>
                 <td><img style="width: 100px" src="{{asset('storage/' . $product->image_path)}}" alt=""></td>
                 <td>{{$product->price}}</td>
-                <td>{{$product->stock}}</td>
+                <td style="color: {{$product->stock < 10 ? 'red' : 'inherit'}}; border: {{$product->stock < 10 ? '1px solid red' : 'inherit'}};">{{$product->stock}}</td>
                 <td>{{$product->category->name}}</td>
                 <td><a href="{{ route('purchases_products.edit', $product) }}" class="btn btn-primary">Bewerken</a></td>
                 <td>
