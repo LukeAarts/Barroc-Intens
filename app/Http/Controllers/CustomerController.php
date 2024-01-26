@@ -48,8 +48,6 @@ class CustomerController extends Controller
         return view('customers.lease_contracts', ['leaseContracts' => $leaseContracts]);
     }
 
-    public function register()
-
     public function create()
     {
         return view('customers.create');
