@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\LeaseContract;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,17 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $customer = auth()->user(); // Dit veronderstelt dat de klant is ingelogd
+        
+        // Haal de leasecontracten op die behoren tot de ingelogde klant
+        $leaseContracts = LeaseContract::where('customer_id', $customer->id)->get();
+    
         return view('profile.edit', [
-            'user' => $request->user(),
+            'customer' => $customer,
+            'leaseContracts' => $leaseContracts,
         ]);
     }
+    
 
     /**
      * Update the user's profile information.

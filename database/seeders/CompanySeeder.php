@@ -14,9 +14,9 @@ class CompanySeeder extends Seeder
      */
     public function run(): void
     {
-        $companies = [
-            [
+        Company::create([
                 'name' => 'Tech_ict',
+                'user_id' => 6,
                 'street' => 'venomstreet',
                 'house_number' => 48,
                 'zipcode' => '6536EY',
@@ -25,8 +25,9 @@ class CompanySeeder extends Seeder
                 'contact_id' => '123',
                 'bkr_checked' => true,
                 'bkr_checked_at' => now(),
-            ],
-            [
+        ]);
+
+        Company::create([
                 'name' => 'school123',
                 'street' => 'lackbockstreet',
                 'house_number' => 22,
@@ -36,8 +37,7 @@ class CompanySeeder extends Seeder
                 'contact_id' => '123',
                 'bkr_checked' => true,
                 'bkr_checked_at' => now(),
-            ],
-        ];
+        ]);
 
        
     }

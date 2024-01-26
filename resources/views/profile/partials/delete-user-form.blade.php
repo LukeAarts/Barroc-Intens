@@ -1,18 +1,45 @@
 <section class="space-y-6">
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+    
+    @if($leaseContracts->isEmpty())
+        <header>
+            <h2 class="text-lg font-medium text-gray-900">
+                {{ __('Account verwijderen') }}
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __('Zodra uw account is verwijderd, worden alle bronnen en gegevens permanent verwijderd. Voordat u uw account verwijdert, downloadt u alle gegevens of informatie die u wilt behouden.') }}
+            </p>
+        </header>
+    @else
+        <header>
+            <h2 class="text-lg font-medium text-gray-900">
+                {{ __('Geen toegang tot verwijderen van account') }}
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __('U kunt uw account niet direct verwijderen, aangezien er momenteel contracten aan uw account zijn gekoppeld. Klik hieronder om een verzoek in te dienen om al uw contracten te beëindigen.') }}
+            </p>
+        </header>
+    @endif
+
+    @if($leaseContracts->isEmpty())
+        <x-danger-button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        >
             {{ __('Delete Account') }}
-        </h2>
+        </x-danger-button>
+    @else
+    <form method="POST" action="{{ route('customers.account-delete-request') }}">
+        @csrf
+        <!-- Andere formuliervelden -->
+        <x-primary-button type="submit">
+            {{ __('Verzoek om alle contracten te beëindigen') }}
+        </x-primary-button>
+    </form>
+        
+    @endif
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
-        </p>
-    </header>
-
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
