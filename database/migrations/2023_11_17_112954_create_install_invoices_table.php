@@ -29,6 +29,9 @@ return new class extends Migration
             $table->foreign('finance_id')
                 ->references('id')
                 ->on('users');
+            $table->dateTime('date')->nullable();
+            $table->dateTime('paid_at')->nullable();
+            $table->integer('company_id')->references('id')->on('companies');
         });
     }
 

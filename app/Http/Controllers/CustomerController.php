@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
 use App\Models\Company;
+use App\Models\InstallInvoice;
 use App\Models\Invoice;
 use App\Models\LeaseContract;
 use App\Models\MalfunctionRequest;
@@ -29,7 +30,7 @@ class CustomerController extends Controller
     public function invoices()
     {
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
-        $invoices = Invoice::all();
+        $invoices = InstallInvoice::all();
         $productInvoices = ProductInvoice::all();
         
         return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices, 'customer' => $customer]);
