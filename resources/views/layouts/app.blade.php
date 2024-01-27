@@ -24,9 +24,9 @@
             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
             <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
         </ul>
-        @if(\Illuminate\Support\Facades\Auth::user() != null && !\Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+        @if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
             <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
-                <li><a href="{{route('dashboard')}}" class="hover:text-gray-300">Dashboard</a></li>
+                <li><a href="{{route('profile.edit')}}" class="hover:text-gray-300">Profiel</a></li>
                 <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
             </ul>
         @endif
@@ -52,14 +52,22 @@
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Finance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <li><a href="{{route('invoice.index')}}" class="{{ request()->is('invoice*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Facturen</a></li>
                 @endif
-                
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Customer') || \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+                    <li><a href="{{route('customers.invoices')}}" class="{{ request()->is('customers*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Facturen</a></li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Customer') || \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+                    <li><a href="{{route('customers.lease_contracts')}}" class="{{ request()->is('customers*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Lease Contracten</a></li>
+                @endif    
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Customer') || \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+                    <li><a href="{{route('customers.malfunction_request')}}" class="{{ request()->is('customers*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Storingsaanvragen</a></li>
+                @endif              
             @endif
         </ul>
     </div>
 </nav>
 
 <!-- Diensten-sectie -->
-<section id="services" class="py-16 relative h-screen">
+<section id="services" class="py-16 relative min-h-screen">
     @yield('content')
 </section>
 <!-- Footer -->

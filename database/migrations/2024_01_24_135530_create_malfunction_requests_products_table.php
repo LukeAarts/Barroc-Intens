@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('custom_invoices', function (Blueprint $table) {
+        Schema::create('malfunction_requests_products', function (Blueprint $table) {
             $table->id();
+            $table->integer('malfunction_request_id')->references('id')->on('malfunction_requestss');
+            $table->integer('product_id')->references('id')->on('custom_products');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('custom_invoices');
+        Schema::dropIfExists('malfunction_requests_products');
     }
 };

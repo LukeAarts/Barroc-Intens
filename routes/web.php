@@ -36,21 +36,33 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('customers/invoices', [CustomerController::class, 'invoices'])->name('customers.invoices');
+    Route::get('customers/invoices/{id}', [CustomerController::class, 'show_invoice'])->name('customers.show_invoice');
+    Route::get('customers/lease_contracts', [CustomerController::class, 'lease_contracts'])->name('customers.lease_contracts');
+    Route::get('customers/lease_contracts/{id}', [CustomerController::class, 'show_lease_contract'])->name('customers.show_lease_contract');
+    Route::post('customers/account-delete-request', [CustomerController::class, 'accountDeleteRequest'])->name('customers.account-delete-request');
+    Route::get('customers/account-delete-confirm', [CustomerController::class, 'accountDelete'])->name('customers.account-delete-confirm');
+
+    Route::get('customers/malfunction_request', [CustomerController::class, 'malfunction_request'])->name('customers.malfunction_request');
+    Route::post('customers/malfunction_request_store', [CustomerController::class, 'malfunction_request_store'])->name('customers.malfunction_request_store');
+
+
     Route::resource('notes', NoteController::class);
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
     Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
     Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
-    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
-
-
+    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');    
 
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
     Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
 
@@ -60,10 +72,14 @@ Route::middleware('auth')->group(function () {
     Route::get('quote/success', [QuoteController::class, 'success'])->name("quote.success");
     Route::resource('quote', QuoteController::class);
     Route::resource('invoice', InvoiceController::class);
+    Route::put('invoice/update-status/{id}', [InvoiceController::class, 'updateStatus'])->name('invoice.updateStatus');
+
+
     Route::resource('finances', FinanceController::class);
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');
+    Route::get('/register_two', [CustomerController::class, 'register']);
 });
 
 Route::resource('customers', CustomerController::class)->only(['create', 'store']);

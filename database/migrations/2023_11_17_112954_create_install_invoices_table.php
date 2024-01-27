@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('finance_id');
             $table->decimal('install_cost');
-
+            $table->enum('status', ['Niet betaald', 'Betaald'])->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')
@@ -29,6 +29,9 @@ return new class extends Migration
             $table->foreign('finance_id')
                 ->references('id')
                 ->on('users');
+            $table->dateTime('date')->nullable();
+            $table->dateTime('paid_at')->nullable();
+            $table->integer('company_id')->references('id')->on('companies')->nullable();
         });
     }
 

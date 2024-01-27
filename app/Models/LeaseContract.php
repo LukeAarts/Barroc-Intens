@@ -15,11 +15,11 @@ class LeaseContract extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'lease_contracts_products', 'lease_contract_id', 'product_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'customer_id'); // Gebruik 'customer_id' in plaats van 'user_id'
     }
 }

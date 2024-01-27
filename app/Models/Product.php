@@ -32,8 +32,13 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'product_category_id');
     }
 
-    public function lease_contracts()
+    public function leaseContracts()
     {
-        return $this->hasMany(LeaseContract::class);
+        return $this->belongsToMany(LeaseContract::class, 'lease_contracts_products', 'product_id', 'lease_contract_id');
+    }
+
+    public function malfunctionRequests()
+    {
+        return $this->belongsToMany(MalfunctionRequest::class, 'malfunction_requests_products');
     }
 }

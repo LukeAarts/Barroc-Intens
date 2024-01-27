@@ -87,10 +87,14 @@ class User extends Authenticatable implements CanResetPassword
     }
 
 
-
     public function lease_contracts()
     {
-        return $this->hasMany(LeaseContract::class);
+        return $this->hasMany(LeaseContract::class, 'customer_id');
+    }
+
+    public function malfunction_requests()
+    {
+        return $this->hasMany(MalfunctionRequest::class, 'customer_id');
     }
 
     public function work_orders()

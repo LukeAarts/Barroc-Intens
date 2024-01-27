@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Mail\AccountDeleteRequest;
+use App\Mail\ContractTerminatedConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
+use App\Models\Company;
+use App\Models\InstallInvoice;
+use App\Models\Invoice;
+use App\Models\LeaseContract;
+use App\Models\MalfunctionRequest;
+use App\Models\Product;
+use App\Models\ProductInvoice;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +22,32 @@ use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
+    public function index()
+    {        
+        return view('customers.index');
+    }
+
+    public function invoices()
+    {
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
+        $invoices = InstallInvoice::all();
+        $productInvoices = ProductInvoice::all();
+        
+        return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices, 'customer' => $customer]);
+    }
+
+    public function lease_contracts()
+    {
+        // Haal de ingelogde klant op
+        $customer = auth()->user(); // Dit veronderstelt dat de klant is ingelogd
+    
+        // Haal de leasecontracten op die behoren tot de ingelogde klant
+        $leaseContracts = LeaseContract::where('customer_id', $customer->id)->get();
+
+    
+        // Geef de gegevens door aan de view
+        return view('customers.lease_contracts', ['leaseContracts' => $leaseContracts]);
+    }
 
     public function create()
     {
@@ -52,4 +86,120 @@ class CustomerController extends Controller
     
         return "Klant geregistreerd en e-mail verstuurd.";
     }
+
+    public function accountDeleteRequest()
+    {
+        // Veronderstel dat je de ingelogde klant ophaalt
+        $customer = auth()->user();
+
+        // Veronderstel dat je de sales medewerker ophaalt (bijvoorbeeld de eerste gebruiker met de rol 'Sales')
+        $salesEmployee = User::where('role', 'Sales')->first();
+
+        // Hier kun je de logica toevoegen om de accountDeleteUrl in te stellen, afhankelijk van jouw implementatie
+        $accountDeleteUrl = 'customers.account-delete-confirm'; // Vervang dit met jouw eigen logica
+
+        // Stuur het account delete verzoek naar de sales medewerker
+        Mail::to($salesEmployee->email)->send(new AccountDeleteRequest($customer, $accountDeleteUrl, $salesEmployee));
+
+        return "Verzoek aangevraagd";
+    }
+
+    public function malfunction_request()
+    {
+        $products = Product::all();
+        return view('customers.malfunction_request')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function malfunction_request_store(Request $request)
+    {
+        // Haal de ingelogde klant op
+        $customer = auth()->user();
+    
+        // Haal het bedrijf van de klant op
+        $company = Company::where('user_id', $customer->id)->first();
+    
+        // Maak de storingsaanvraag aan
+        $malfunction = MalfunctionRequest::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'comments' => $request->input('comments'),
+            'customer_id' => $customer->id,
+            'company_id' => $company->id,
+        ]);
+    
+        // Haal het bestaande product op basis van het geselecteerde product_id in het formulier
+        $product = Product::find($request->input('product_id'));
+    
+        // Voeg het product toe aan de storingsaanvraag
+        $malfunction->products()->attach($product->id);
+    
+        // Voer verdere logica uit, indien nodig
+    
+        return "Storingsaanvraag aangemaakt";
+    }
+       
+
+    public function showAccountDeleteConfirmation()
+    {
+        return view('customers.account-delete-confirmation');
+    }
+
+    public function accountDelete(Request $request)
+    {
+        // Haal de klant op basis van de ingelogde gebruiker
+        $customer = auth()->user();
+    
+        // Vind en verwijder alle contracten van deze klant
+        LeaseContract::where('customer_id', $customer->id)->delete();
+    
+        // Voer verdere logica uit, zoals het versturen van een bevestigingsmail, etc.
+        Mail::to($customer->email)->send(new ContractTerminatedConfirmation($customer));
+    
+        return "Contracten beëindigd";
+    }
+
+
+    public function show_invoice($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $product = Product::findOrFail($id);
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
+        $productInvoice = ProductInvoice::where('id', $id)->first();
+        
+        // Haal alle gekoppelde contracten van de ingelogde klant op
+        $contracts = LeaseContract::where('customer_id', $customer->id)->get();
+        
+        return view('customers.show_invoice')->with([
+            'invoice' => $invoice,
+            'productInvoice' => $productInvoice,
+            'customer' => $customer,
+            'contracts' => $contracts,
+            'product' => $product,
+        ]);
+    }
+    
+    
+    public function show_lease_contract($id)
+    {
+        $contract = LeaseContract::findOrFail($id);
+        $company = Company::findOrFail($id);
+        $customer = auth()->user(); // Haal de ingelogde gebruiker op
+        $products = $contract->products; // Gebruik de relatie om producten op te halen
+
+        // dd($products);
+    
+        return view('customers.show_lease_contract')->with([
+            'contract' => $contract,
+            'customer' => $customer,
+            'company' => $company,
+            'products' => $products,
+        ]);
+    }
+    
+    
+    
+
+    
 }
