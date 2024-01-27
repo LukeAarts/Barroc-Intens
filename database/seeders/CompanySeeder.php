@@ -39,9 +39,6 @@ class CompanySeeder extends Seeder
                 'bkr_checked_at' => now(),
         ]);
 
-        // Insert each company into the database
-        foreach ($companies as $companyData) {
-            Company::create($companyData);
-        }
+       
     }
 }
