@@ -5,10 +5,11 @@
             <h2 class="text-2xl font-bold mb-4 border-b pb-2">Factuur</h2>
             <div>
                 <ul>
-                    <li class="pb-2"><strong>Naam:</strong> {{$customer->name}}</li>
+                    <li class="pb-2"><strong>Naam klant:</strong> {{$customer->name}}</li>
+                    <li class="pb-2"><strong>Naam bedrijf:</strong>@forelse ($companies as $company) {{ $company->name }} @empty Geen bedrijf @endforelse</li>
                     <li class="pb-10"><strong>Datum:</strong> {{$invoice->date}}</li>
                     <li class="pb-2"><strong>Klantnummer:</strong> {{$customer->id}}</li>
-                    <li class="pb-2"><strong>Contractnummer:</strong>@foreach ($contracts as $contract) {{$contract->id}} @endforeach</li>
+                    <li class="pb-2"><strong>Contractnummer:</strong>@forelse ($contracts as $contract){{ $contract->id }}@empty Geen contract @endforelse</li>
                     <li class="pb-10"><strong>Factuurnummer:</strong> {{$invoice->id}} </li>
                     <li class="border-b-4 border-yellow-400 pb-2"></li>
                 </ul>

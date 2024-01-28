@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\Maintenance;
 use App\Models\MaintenanceErrorPlanned;
+use App\Models\MalfunctionRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +16,31 @@ class MaintenanceController extends Controller
 {
     public function index()
     {
+
         $maintenanceAppointments = Maintenance::with(['company', 'product_category', 'ticket'])->get();
-        return view('maintenance.index', compact('maintenanceAppointments'));
+
+        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin' || auth()->user()->role === 'Maintenance')) {
+
+            return view('maintenance.index', compact('maintenanceAppointments'));
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
     }
 
+
+    public function headmaintenance()
+    {
+
+        $maintenanceAppointments = Maintenance::with(['company', 'product_category', 'ticket'])->get();
+        $malfunctionRequests = MalfunctionRequest::all();
+
+        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin')) {
+
+            return view('maintenance.headmaintenance', compact('maintenanceAppointments', 'malfunctionRequests'));
+        } else {
+            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+        }
+    }
 
     public function fullcalander()
     {

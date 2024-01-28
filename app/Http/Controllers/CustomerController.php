@@ -179,13 +179,14 @@ class CustomerController extends Controller
 
     public function show_invoice($id)
     {
-        $invoice = Invoice::findOrFail($id);
+        $invoice = InstallInvoice::findOrFail($id);
         $product = Product::findOrFail($id);
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
         $productInvoice = ProductInvoice::where('id', $id)->first();
         
         // Haal alle gekoppelde contracten van de ingelogde klant op
         $contracts = LeaseContract::where('customer_id', $customer->id)->get();
+        $companies = Company::where('user_id', $customer->id)->get();
         
         return view('customers.show_invoice')->with([
             'invoice' => $invoice,
@@ -193,6 +194,7 @@ class CustomerController extends Controller
             'customer' => $customer,
             'contracts' => $contracts,
             'product' => $product,
+            'companies' => $companies
         ]);
     }
     
