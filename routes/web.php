@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/{user}/notes', [NoteController::class, 'userNotes'])->name('user.notes');
     Route::get('/companies/{company}/edit', [NoteController::class, 'editCompany'])->name('notes.editCompany');
     Route::put('/companies/{company}', [NoteController::class, 'updateCompany'])->name('notes.updateCompany');
-    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');    
+    Route::put('/notes/{company}/updateBkr', [NoteController::class, 'updateBkr'])->name('notes.user_notes');
 
 
 
@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('finances', FinanceController::class);
+    Route::get('maintenance/headmaintenance', [MaintenanceController::class, 'headmaintenance'])->name("maintenance.headmaintenance");
     Route::get('maintenance/fullcalendar', [MaintenanceController::class, 'fullcalander'])->name("maintenance.fullcalendar");
     Route::resource('maintenance', MaintenanceController::class)->except(['show']);
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'show'])->name('maintenance.show');

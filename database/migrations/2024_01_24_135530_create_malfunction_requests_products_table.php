@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('malfunction_requests_products', function (Blueprint $table) {
             $table->id();
-            $table->integer('malfunction_request_id')->references('id')->on('malfunction_requestss');
+            $table->integer('malfunction_request_id')->references('id')->on('malfunction_requests');
             $table->integer('product_id')->references('id')->on('custom_products');
             $table->timestamps();
         });
