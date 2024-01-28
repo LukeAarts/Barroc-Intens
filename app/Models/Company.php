@@ -38,6 +38,11 @@ class Company extends Model
         return $this->belongsTo(Quotation::class);
     }
 
+    public function invoice()
+    {
+        return $this->belongsTo(InstallInvoice::class);
+    }
+
     public function notes()
 {
     return $this->hasMany(Note::class);

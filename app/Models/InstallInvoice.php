@@ -28,4 +28,9 @@ class InstallInvoice extends Model
     {
         return $this->hasOne(Quotation::class, "id", "quotation_id");
     }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class, "id", "company_id");
+    }
 }

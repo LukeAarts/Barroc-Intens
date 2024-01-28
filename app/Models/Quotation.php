@@ -19,6 +19,7 @@ class Quotation extends Model
         'phonenumber',
         'email',
         'created_at',
+        'amount'
     ];
 
     public function customer()

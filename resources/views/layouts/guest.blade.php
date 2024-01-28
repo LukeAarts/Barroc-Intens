@@ -30,7 +30,7 @@
                 
 
             <!-- Diensten-sectie -->
-            <section id="services" class="py-16 relative h-screen">
+            <section id="services" class="py-16 relative min-h-screen">
                 @yield('content')
             </section>
             <!-- Footer -->

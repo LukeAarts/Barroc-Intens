@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('custom_invoice_products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->decimal('price');
-            $table->integer('amount');
+            $table->decimal('subtotal');
             $table->integer('custom_invoice_id')->references('id')->on('custom_invoices');
             $table->integer('product_id')->references('id')->on('products');
         });
