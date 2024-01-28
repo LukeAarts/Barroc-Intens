@@ -14,7 +14,7 @@ class Company extends Model
         'user_id',
         'city',
         'street',
-        'houseNumber',
+        'house_Number',
         'zipcode',
         'phonenumber',
         'bkr_checked',

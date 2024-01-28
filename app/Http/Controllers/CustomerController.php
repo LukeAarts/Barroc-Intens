@@ -81,7 +81,7 @@ class CustomerController extends Controller
         'name' => $request->input('name'),
         'user_id' => $customer->id,
         'street' => $request->input('street'),
-        'house_number' => $request->input('houseNumber'),
+        'house_Number' => $request->input('houseNumber'),
         'zipcode' => $request->input('zipcode'),
         'city' => $request->input('city'),
         'phonenumber' => $request->input('phonenumber'),
