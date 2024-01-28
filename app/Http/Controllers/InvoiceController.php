@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\InvoiceMail;
 use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class InvoiceController extends Controller
@@ -55,6 +56,7 @@ class InvoiceController extends Controller
         $invoice->finance_id = Auth::user()->id;
         $invoice->install_cost = $validatedData['prodinstallcost'];
         $invoice->info = $validatedData['note'];
+        $invoice->date = Carbon::now();
         $invoice->save();
 
         return redirect(route('invoice.edit', $invoice->id));

@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerRegistration;
 use App\Models\Company;
+use App\Models\InstallInvoice;
 use App\Models\Invoice;
 use App\Models\LeaseContract;
 use App\Models\MalfunctionRequest;
 use App\Models\Product;
 use App\Models\ProductInvoice;
 use App\Models\User;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,7 +31,7 @@ class CustomerController extends Controller
     public function invoices()
     {
         $customer = auth()->user(); // Haal de ingelogde gebruiker op
-        $invoices = Invoice::all();
+        $invoices = InstallInvoice::all();
         $productInvoices = ProductInvoice::all();
         
         return view('customers.invoices')->with(['invoices' => $invoices, 'productInvoices' => $productInvoices, 'customer' => $customer]);
@@ -54,37 +56,52 @@ class CustomerController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Valideer de invoer
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            // Voeg andere velden toe die je nodig hebt
-        ]);
-    
-        // Maak een nieuwe klant
-        $customer = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'role' => 'Customer',
-        ]);
+{
+    // Validate the input
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'street' => 'required',
+        'houseNumber' => 'required',
+        'zipcode' => 'required',
+        'city' => 'required',
+        'phonenumber' => 'required',
+        // Add other fields if needed
+    ]);
 
-        $token = Str::random(40); 
+    // Create a new customer
+    $customer = User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'role' => 'Customer',
+    ]);
 
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->input('email'),
-            'token' => Hash::make($token),
-            'created_at' => now(),
-        ]);
-    
-        // Verstuur registratie-e-mail
-        // token opslaan in password_resets table
-        $resetUrl = route('password.reset', ['token' => $token]);
-        Mail::to($customer->email)->send(new CustomerRegistration($customer, $resetUrl, $token));
+    // Create a new company
+    $company = Company::create([
+        'name' => $request->input('name'),
+        'user_id' => $customer->id,
+        'street' => $request->input('street'),
+        'house_number' => $request->input('houseNumber'),
+        'zipcode' => $request->input('zipcode'),
+        'city' => $request->input('city'),
+        'phonenumber' => $request->input('phonenumber'),
+        // Add other fields if needed
+    ]);
 
-    
-        return "Klant geregistreerd en e-mail verstuurd.";
-    }
+    $token = Str::random(40);
+
+    DB::table('password_reset_tokens')->insert([
+        'email' => $request->input('email'),
+        'token' => Hash::make($token),
+        'created_at' => now(),
+    ]);
+
+    // Send registration email and save token in the password_resets table
+    $resetUrl = route('password.reset', ['token' => $token]);
+    Mail::to($customer->email)->send(new CustomerRegistration($customer, $resetUrl, $token));
+
+    return "Klant geregistreerd en e-mail verstuurd.";
+}
 
     public function accountDeleteRequest()
     {

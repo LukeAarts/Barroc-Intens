@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->integer('user_id')->references('id')->on('users')->nullable();;
             $table->string('street');
-            $table->string('house_number', 45);
-            $table->string('zipcode');
-            $table->string('city');
-            $table->string('phonenumber');
+            $table->string('house_number')->nullable();;
+            $table->string('zipcode')->nullable();;
+            $table->string('city')->nullable();;
+            $table->string('phonenumber')->nullable();;
             //$table->string('country_code', 6)->nullable();
-            $table->dateTime('bkr_checked_at')->nullable();
-            $table->boolean('bkr_checked'); 
+            $table->dateTime('bkr_checked_at')->nullable();;
+            $table->boolean('bkr_checked')->default(false);
 
             $table->timestamps();
             $table->integer('contact_id')->references('id')->on('users')->nullable();
