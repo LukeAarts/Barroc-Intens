@@ -1,61 +1,86 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Klant Aanmaken</h1>
+    <div class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold mb-8 max-w-md mx-auto">Klant Aanmaken</h1>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-4 mb-8">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <form method="post" action="{{ route('customers.store') }}">
-        @csrf
+        <form method="post" action="{{ route('customers.store') }}" class="max-w-md mx-auto">
+            @csrf
 
-        <label for="name">Naam:</label>
-        <input type="text" name="name" value="{{ old('name') }}" required>
-        @error('name')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-semibold">Naam:</label>
+                <input type="text" name="name" value="{{ old('name') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('name')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" value="{{ old('email') }}" required>
-        @error('email')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-semibold">E-mail:</label>
+                <input type="email" name="email" value="{{ old('email') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('email')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="street">Straat:</label>
-        <input type="text" name="street" value="{{ old('street') }}" required>
-        @error('street')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="street" class="block text-sm font-semibold">Straat:</label>
+                <input type="text" name="street" value="{{ old('street') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('street')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="houseNumber">Huisnummer:</label>
-        <input type="text" name="houseNumber" value="{{ old('houseNumber') }}" required>
-        @error('houseNumber')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="houseNumber" class="block text-sm font-semibold">Huisnummer:</label>
+                <input type="text" name="houseNumber" value="{{ old('houseNumber') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('houseNumber')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="zipcode">Postcode:</label>
-        <input type="text" name="zipcode" value="{{ old('zipcode') }}" required>
-        @error('zipcode')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="zipcode" class="block text-sm font-semibold">Postcode:</label>
+                <input type="text" name="zipcode" value="{{ old('zipcode') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('zipcode')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="city">Plaats:</label>
-        <input type="text" name="city" value="{{ old('city') }}" required>
-        @error('city')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="city" class="block text-sm font-semibold">Plaats:</label>
+                <input type="text" name="city" value="{{ old('city') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('city')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="phonenumber">Telefoonnummer:</label>
-        <input type="text" name="phonenumber" value="{{ old('phonenumber') }}" required>
-        @error('phonenumber')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+            <div class="mb-4">
+                <label for="phonenumber" class="block text-sm font-semibold">Telefoonnummer:</label>
+                <input type="text" name="phonenumber" value="{{ old('phonenumber') }}" required
+                       class="w-full bg-gray-700 text-white p-2 rounded">
+                @error('phonenumber')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <!-- Add other form input fields if needed -->
+            <!-- Voeg andere invoervelden toe indien nodig -->
 
-        <button type="submit">Klant Aanmaken</button>
-    </form>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200">
+                Klant Aanmaken
+            </button>
+        </form>
+    </div>
 @endsection
