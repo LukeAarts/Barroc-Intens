@@ -45,8 +45,8 @@
                 <td>{{ $malfunctionRequest->title }}</td>
                 <td>{{ $malfunctionRequest->description }}</td>
                 <td>{{ $malfunctionRequest->comments }}</td>
-                <td>{{ $malfunctionRequest->customer_id }}</td>
-                <td>{{ $malfunctionRequest->company_id }}</td>
+                <td>{{ optional($malfunctionRequest->user)->name }}</td>
+                <td>{{ optional($malfunctionRequest->company)->name }}</td>
             
             </tr>
         @endforeach
