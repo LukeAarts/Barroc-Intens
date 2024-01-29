@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('customer_id')->references('id')->on('companies');
             $table->integer('products_id')->references('id')->on('products');
+            $table->integer('amount');
             $table->text('content');
             $table->timestamps();
         });

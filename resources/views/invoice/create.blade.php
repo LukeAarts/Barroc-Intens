@@ -70,6 +70,12 @@
                                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required name="prodname" id="prodname" type="text" placeholder="Product" value="{{$product->name}}">
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-6">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="amount">
+                                        Aantal
+                                    </label>
+                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required name="amount" id="amount" type="number" placeholder="Aantal" value="{{$quote->amount}}">
+                                </div>
+                                <div class="flex flex-wrap -mx-3 mb-6">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="cost">
                                         Installatiekosten
                                     </label>

@@ -41,7 +41,8 @@ class QuoteController extends Controller
             'postcode' => 'required',
             'stad' => 'required',
             'telefoonnummer' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'amount' => 'required'
         ]);
         $quote = new Quotation();
         $quote->customer_id = Auth::id();
@@ -53,6 +54,7 @@ class QuoteController extends Controller
         $quote->city = $validatedData['stad'];
         $quote->phonenumber = $validatedData['telefoonnummer'];
         $quote->email = $validatedData['email'];
+        $quote->amount = $validatedData['amount'];
         $quote->save();
         return redirect(route('quote.success'));
     }

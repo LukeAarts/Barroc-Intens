@@ -14,7 +14,7 @@ class Company extends Model
         'user_id',
         'city',
         'street',
-        'houseNumber',
+        'house_Number',
         'zipcode',
         'phonenumber',
         'bkr_checked',
@@ -38,8 +38,13 @@ class Company extends Model
         return $this->belongsTo(Quotation::class);
     }
 
+    public function invoice()
+    {
+        return $this->hasMany(InstallInvoice::class, 'company_id', 'id');
+    }
+
     public function notes()
-{
-    return $this->hasMany(Note::class);
-}
+    {
+        return $this->hasMany(Note::class);
+    }
 }

@@ -13,21 +13,22 @@ class NoteController extends Controller
 {
     // ...
 
-        public function index()
+    public function index()
     {
-        $users = User::where('role', 'user')->with('company', 'notes')->get();
-
+        $users = User::whereIn('role', ['user', 'customer'])->with('company', 'notes')->get();
+    
         return view('notes.index', compact('users'));
     }
+    
 
 
 
     public function create()
-    {
-        $users = User::where('role', 'user')->get();
+{
+    $users = User::whereIn('role', ['user', 'customer'])->get();
 
-        return view('notes.create', compact('users'));
-    }
+    return view('notes.create', compact('users'));
+}
 
 
 
@@ -123,6 +124,16 @@ class NoteController extends Controller
         return redirect()->route('notes.index')->with('success', 'Bedrijfsinformatie succesvol bijgewerkt.');
     }
 
+
+    public function userCompanies(User $user)
+    {
+        // Gebruik de relatie op de User-entiteit om de bedrijven op te halen
+        $companies = $user->companies;
+        $notes = $user->notes;
+    
+        return view('notes.user_notes', compact('user', 'companies', 'notes'));
+    }
+    
 
 
     

@@ -28,6 +28,19 @@ class CompanySeeder extends Seeder
         ]);
 
         Company::create([
+            'name' => 'QUE MIRAS BOBO',
+            'user_id' => 7,
+            'street' => 'inter miami street',
+            'house_number' => 18,
+            'zipcode' => '7633DF',
+            'city' => 'Amsterdam',
+            'phonenumber' => '0646733241',
+            'contact_id' => '144',
+            'bkr_checked' => true,
+            'bkr_checked_at' => now(),
+    ]);
+
+        Company::create([
                 'name' => 'school123',
                 'street' => 'lackbockstreet',
                 'house_number' => 22,

@@ -22,4 +22,9 @@ class MalfunctionRequest extends Model
     {
         return $this->belongsToMany(Product::class, 'malfunction_requests_products');
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }

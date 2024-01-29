@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('maintenance/work_orders', WorkOrderController::class)->except(['index']);
     Route::get('maintenance/work_orders', [WorkOrderController::class, 'index'])->name('maintenance.work_orders.index');
+    
 
 
 
