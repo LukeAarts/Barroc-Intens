@@ -40,11 +40,11 @@ class Company extends Model
 
     public function invoice()
     {
-        return $this->belongsTo(InstallInvoice::class);
+        return $this->hasMany(InstallInvoice::class, 'company_id', 'id');
     }
 
     public function notes()
-{
-    return $this->hasMany(Note::class);
-}
+    {
+        return $this->hasMany(Note::class);
+    }
 }

@@ -44,13 +44,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Installatie (Machine ID: {{$invoice->product_id}})
+                                    Machine ID: {{$invoice->product_id}}
                                 </td>
                                 <td>
-                                    1
+                                    {{$invoice->quotation->price}}
                                 </td>
                                 <td>
-                                    {{$invoice->install_cost}}
+                                    {{$invoice->productInvoice->subtotal}}
                                 </td>
                                 <td>
                                     {{$invoice->install_cost}}
