@@ -29,11 +29,15 @@
                 <td>{{$product->category->name}}</td>
                 <td><a href="{{ route('purchases_products.edit', $product) }}" class="btn btn-primary">Bewerken</a></td>
                 <td>
+                    @if (!$product->isUsedInLeaseContract())
                     <form method="post" class="btn btn-danger" action="{{ route('products.destroy', $product)}}">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="delete">
                     </form>
+                @else
+                    <span class="btn btn-danger disabled">product in gebruik</span>
+                @endif
                 </td>
             </tr>
         @endforeach

@@ -41,4 +41,10 @@ class Product extends Model
     {
         return $this->belongsToMany(MalfunctionRequest::class, 'malfunction_requests_products');
     }
+
+
+    public function isUsedInLeaseContract()
+    {
+        return $this->leaseContracts()->exists();
+    }
 }
