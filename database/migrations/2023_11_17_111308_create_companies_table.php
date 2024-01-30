@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('company_name')->nullable();;
             $table->integer('user_id')->references('id')->on('users')->nullable();;
             $table->string('street');
             $table->string('house_number')->nullable();;

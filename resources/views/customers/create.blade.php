@@ -22,6 +22,15 @@
                 @enderror
             </div>
 
+             <div class="mb-4">
+                <label for="company_name" class="block text-black text-sm font-semibold">Bedrijfsnaam:</label>
+                <input type="text" name="company_name" value="{{ old('company_name') }}" required
+                       class="w-full bg-white border-2 border-gray-700 text-black p-2 rounded">
+                @error('company_name')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="mb-4">
                 <label for="email" class="block text-black text-sm font-semibold">E-mail:</label>
                 <input type="email" name="email" value="{{ old('email') }}" required
@@ -83,4 +92,4 @@
             </button>
         </form>
     </div>
-@endsection
+@endsection$table->string('name');

@@ -94,12 +94,13 @@ class NoteController extends Controller
     
 
 
+   
     public function destroy(Note $note)
     {
         $note->delete();
-        return redirect()->route('notes.index')->with('success', 'Notitie succesvol verwijderd.');
+        
+        return redirect()->back()->with('success', 'Notitie succesvol verwijderd.');
     }
-
 
 
         public function editCompany(Company $company)
@@ -120,10 +121,10 @@ class NoteController extends Controller
         ]);
 
         $company->update($request->all());
+        $user = $company->user;
 
-        return redirect()->route('notes.index')->with('success', 'Bedrijfsinformatie succesvol bijgewerkt.');
+        return redirect()->route('user.notes', ['user' => $user->id])->with('success', 'Bedrijfsinformatie succesvol gewijzigd.');
     }
-
 
     public function userCompanies(User $user)
     {
