@@ -13,7 +13,7 @@
                 <!-- Navigatiebalk -->
                 <nav class="p-4 text-white">
                     <div class="container mx-auto flex items-center w-full">
-                        <img src="images/logo6_groot.png" style="width: 65px" alt="afbeelding">
+                        <img src="images/logo6_groot.png" style="width: 95px" alt="afbeelding">
                         <ul class="flex ml-24 space-x-4 text-xl font-light">
                             <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
                             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Producten</a></li>
