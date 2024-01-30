@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('role', ['Admin', 'User', 'Finance', 'Sales', 'Maintenance', 'Inventory', 'Customer', 'Headmaintenance'])->default('User');
+            $table->integer('company_id')->references('id')->on('companies')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

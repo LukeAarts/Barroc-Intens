@@ -80,7 +80,7 @@ class WorkOrderController extends Controller
 
         // Verdere logica of redirects hier...
 
-        return redirect()->route('dashboard');
+        return redirect()->route('maintenance.work_orders.index');
     }
 
     /**

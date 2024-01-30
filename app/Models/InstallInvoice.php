@@ -9,9 +9,9 @@ class InstallInvoice extends Model
 {
     use HasFactory;
 
-    public function product()
+    public function products()
     {
-        return $this->hasOne(Product::class, "id", "product_id");
+        return $this->belongsToMany(Product::class, 'custom_invoice_products', 'custom_invoice_id')->withPivot('subtotal');
     }
 
     public function customer()

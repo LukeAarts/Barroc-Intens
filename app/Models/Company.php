@@ -28,9 +28,9 @@ class Company extends Model
         return $this->hasOne(Maintenance::class);
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function quotation()

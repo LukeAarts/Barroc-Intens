@@ -16,7 +16,6 @@ class CompanySeeder extends Seeder
     {
         Company::create([
                 'name' => 'Tech_ict',
-                'user_id' => 6,
                 'street' => 'venomstreet',
                 'house_number' => 48,
                 'zipcode' => '6536EY',
@@ -29,7 +28,6 @@ class CompanySeeder extends Seeder
 
         Company::create([
             'name' => 'QUE MIRAS BOBO',
-            'user_id' => 7,
             'street' => 'inter miami street',
             'house_number' => 18,
             'zipcode' => '7633DF',

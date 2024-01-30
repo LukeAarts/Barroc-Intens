@@ -59,11 +59,19 @@
                 @endif    
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Customer') || \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
                     <li><a href="{{route('customers.malfunction_request')}}" class="{{ request()->is('customers*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Storingsaanvragen</a></li>
-                @endif            
-
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Maintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
                     <a href="{{ route('maintenance.index') }}" class="{{ request()->is('maintenance*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Maintenance</a>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Maintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <a href="{{ route('maintenance.fullcalendar') }}" class="{{ request()->is('maintenance*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Kalender</a>
                 @endif  
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Headmaintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <a href="{{ route('maintenance.fullcalendar') }}" class="{{ request()->is('headmaintenance*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Kalender</a>
+                @endif   
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Headmaintenance') || \Illuminate\Support\Facades\Auth::user()->hasRole('Admin'))
+                    <a href="{{ route('maintenance.work_orders.index') }}" class="{{ request()->is('headmaintenance*') ? 'bg-white text-black px-2 py-1 rounded-md hover:bg-gray-300 ' : '' }}">Werkbonnen</a>
+                @endif    
             @endif
         </ul>
     </div>

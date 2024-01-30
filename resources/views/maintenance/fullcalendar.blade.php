@@ -6,10 +6,12 @@
     <title>FullCalendar in HTML</title>
     <!-- Voeg Bootstrap CSS toe voor stijlverbeteringen -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/> --}}
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 </head>
 <body>
     <div class="container mt-4">
+        <a href="{{ route('maintenance.create') }}" class="btn btn-info btn-rounded mb-2">Maak afspraak</a>
         <div id="calendar"></div>
     </div>    
     <script>
@@ -35,18 +37,19 @@
                 editable: true,
                 eventClick: function(info) {
                     var eventId = info.event.id;
-
+    
                     // Gebruik Laravel-route om de juiste URL op te bouwen
                     var showUrl = '{{ route("maintenance.show", ":id") }}';
                     showUrl = showUrl.replace(':id', eventId);
-
+    
                     // Navigeer naar de detailspagina
                     window.location.href = showUrl;
                 },
-
             });
+            
             calendar.render();
         });
-    </script>    
+    </script>
+       
 </body>
 </html>

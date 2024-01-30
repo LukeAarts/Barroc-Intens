@@ -1,61 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Werkbonnen Overzicht</title>
-</head>
-<body>
-    
-    
-  
- 
-    <h1>Werkbonnen Overzicht</h1>
+@extends('layouts.app')
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Work Order Date</th>
-                <th>Gebruikt materiaal</th>
-                <th>Hoeveel</th>
-                <th>Wie:</th>
-                <!-- Voeg hier extra kolommen toe op basis van je datamodel -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($workOrders as $workOrder)
-                <tr>
-                    <td>{{ $workOrder->id }}</td>
-                    <td>{{ $workOrder->title }}</td>
-                    <td>{{ $workOrder->description }}</td>
-                    <td>{{ $workOrder->work_order_date }}</td>
-                    <td>
-                        @foreach ($workOrder->materials as $material)
-                        {{ $material->name }}
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($workOrder->materials as $material)
-                            {{ $material->pivot->material_amount }}
-                        @endforeach
-                    </td>
-                    <td>
-                        @if ($workOrder->user)
-                            {{ $workOrder->user->name }}
-                        @else
-                            Geen gebruiker toegewezen
-                        @endif
-                    </td>
-                    <!-- Voeg hier extra kolommen toe op basis van je datamodel -->
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-  
-   
-</body>
-</html>
+@section('content')
+    <body class="bg-gray-100 p-4">
+        <div class="overflow-x-auto w-auto px-64">
+            <h1 class="text-3xl mb-4">Werkbonnen Overzicht</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="border py-2 px-4">ID</th>
+                        <th class="border py-2 px-4">Title</th>
+                        <th class="border py-2 px-4">Description</th>
+                        <th class="border py-2 px-4">Work Order Date</th>
+                        <th class="border py-2 px-4">Gebruikt materiaal (tussen haakjes hoeveel)</th>
+                        <th class="border py-2 px-4">Wie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($workOrders as $workOrder)
+                        <tr>
+                            <td class="border py-2 px-4">{{ $workOrder->id }}</td>
+                            <td class="border py-2 px-4">{{ $workOrder->title }}</td>
+                            <td class="border py-2 px-4">{{ $workOrder->description }}</td>
+                            <td class="border py-2 px-4">{{ $workOrder->work_order_date }}</td>
+                            <td class="border py-2 px-4">
+                                @foreach ($workOrder->materials as $material)
+                                    {{ $material->name }} ({{ $material->pivot->material_amount }})<br>
+                                @endforeach
+                            </td>
+                            <td class="border py-2 px-4">
+                                @if ($workOrder->user)
+                                    {{ $workOrder->user->name }}
+                                @else
+                                    Geen gebruiker toegewezen
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </body>
+@endsection

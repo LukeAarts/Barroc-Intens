@@ -44,16 +44,22 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Machine ID: {{$invoice->product_id}}
+                                    @foreach ($invoice->products as $product)
+                                        {{$product->name}}
+                                    @endforeach
                                 </td>
                                 <td>
-                                    {{$invoice->quotation->price}}
+                                    {{$invoice->quotation->amount}}
                                 </td>
                                 <td>
-                                    {{$invoice->productInvoice->subtotal}}
+                                    @foreach ($invoice->products as $product)
+                                        {{$product->price}}
+                                    @endforeach
                                 </td>
                                 <td>
-                                    {{$invoice->install_cost}}
+                                    @foreach ($invoice->products as $product)
+                                        {{$product->pivot->subtotal}}
+                                    @endforeach
                                 </td>
                             </tr>
                         </table>
