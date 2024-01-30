@@ -22,7 +22,6 @@
         <ul class="flex ml-24 space-x-4 text-xl font-light">
             <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
-            <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
         </ul>
         @if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
             <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
