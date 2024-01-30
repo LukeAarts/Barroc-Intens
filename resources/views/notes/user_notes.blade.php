@@ -3,6 +3,11 @@
 @section('content')
     <div class="bg-gray-800 text-white p-4">
         <div class="overflow-x-auto w-auto px-64">
+            @if(session('success'))
+                <div class="bg-green-500 text-white p-4 mb-4 rounded">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <h1 class="text-2xl font-bold mb-4">Bedrijfsinfo van {{ $user->name }}</h1>
 
@@ -12,12 +17,12 @@
                         <tr>
                             <th class="border py-2 px-4">ID</th>
                             <th class="border py-2 px-4">Bedrijfsnaam</th>
+                            <th class="border py-2 px-4">Eigenaar van bedrijf</th>
                             <th class="border py-2 px-4">Straat</th>
                             <th class="border py-2 px-4">Huisnummer</th>
                             <th class="border py-2 px-4">Postcode</th>
                             <th class="border py-2 px-4">Stad</th>
                             <th class="border py-2 px-4">Telefoonnummer</th>
-                            <th class="border py-2 px-4">BKR Check</th>
                             <th class="border py-2 px-4">Bewerken</th>
                         </tr>
                     </thead>
@@ -26,23 +31,14 @@
                             @if($company->user_id == $user->id)
                                 <tr>
                                     <td class="border py-2 px-4">{{$company->id}}</td>
+                                    <td class="border py-2 px-4">{{$company->company_name}}</td>
                                     <td class="border py-2 px-4">{{$company->name}}</td>
                                     <td class="border py-2 px-4">{{$company->street}}</td>
                                     <td class="border py-2 px-4">{{$company->house_number}}</td>
                                     <td class="border py-2 px-4">{{$company->zipcode}}</td>
                                     <td class="border py-2 px-4">{{$company->city}}</td>
                                     <td class="border py-2 px-4">{{$company->phonenumber}}</td>
-                                    <td class="border py-2 px-4">
-                                        <form method="post" action="{{ route('finances.update', $company->id) }}">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="id" value="{{ $company->id }}">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="bkr_checked" {{ $company->bkr_checked ? 'checked' : '' }}>
-                                                <button type="submit" class="text-black ml-2">Opslaan</button>
-                                            </div>
-                                        </form>
-                                    </td>
+                                    
                                     <td class="border py-2 px-4">
                                         <a href="{{ route('notes.editCompany', $company->id) }}" class="text-blue-500">Bewerk</a>
                                     </td>

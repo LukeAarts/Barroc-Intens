@@ -60,6 +60,7 @@ class CustomerController extends Controller
     // Validate the input
     $request->validate([
         'name' => 'required',
+        'company_name' => 'required',
         'email' => 'required|email|unique:users',
         'street' => 'required',
         'houseNumber' => 'required',
@@ -79,6 +80,7 @@ class CustomerController extends Controller
     // Create a new company
     $company = Company::create([
         'name' => $request->input('name'),
+        'company_name' => $request->input('company_name'),
         'user_id' => $customer->id,
         'street' => $request->input('street'),
         'house_Number' => $request->input('houseNumber'),
