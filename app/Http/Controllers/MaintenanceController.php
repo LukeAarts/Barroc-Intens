@@ -44,12 +44,27 @@ class MaintenanceController extends Controller
 
     public function fullcalander()
     {
-        $maintenanceAppointments = Maintenance::all();
-        if (auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin' || auth()->user()->role === 'Maintenance')) {
+        // Controleer of de gebruiker is ingelogd
+        if (auth()->check()) {
+            // Haal de rol van de ingelogde gebruiker op
+            $userRole = auth()->user()->role;
 
+            // Als de gebruiker een 'Admin' of 'Headmaintenance' is, haal dan alle afspraken op
+            if ($userRole === 'Admin' || $userRole === 'Headmaintenance') {
+                $maintenanceAppointments = Maintenance::all();
+            } else {
+                // Haal de ID van de ingelogde gebruiker op
+                $userId = auth()->id();
+
+                // Haal de afspraken op die aan de ingelogde gebruiker zijn toegewezen
+                $maintenanceAppointments = Maintenance::where('assigned', $userId)->get();
+            }
+
+            // Geef de afspraken weer op de fullcalendar-pagina
             return view('maintenance.fullcalendar', compact('maintenanceAppointments'));
         } else {
-            return redirect('/noAcces')->with('error', 'Je hebt geen toegang tot deze pagina.');
+            // Redirect naar inlogpagina als de gebruiker niet is ingelogd
+            return redirect('/login');
         }
     }
 
