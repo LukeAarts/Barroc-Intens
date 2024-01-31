@@ -15,7 +15,7 @@ class CompanySeeder extends Seeder
     public function run(): void
     {
         Company::create([
-                'name' => 'Tech_ict',
+                'company_name' => 'Tech_ict',
                 'street' => 'venomstreet',
                 'house_number' => 48,
                 'zipcode' => '6536EY',
@@ -27,7 +27,7 @@ class CompanySeeder extends Seeder
         ]);
 
         Company::create([
-            'name' => 'QUE MIRAS BOBO',
+            'company_name' => 'QUE MIRAS BOBO',
             'street' => 'inter miami street',
             'house_number' => 18,
             'zipcode' => '7633DF',
@@ -39,7 +39,7 @@ class CompanySeeder extends Seeder
     ]);
 
         Company::create([
-                'name' => 'school123',
+                'company_name' => 'school123',
                 'street' => 'lackbockstreet',
                 'house_number' => 22,
                 'zipcode' => '65444YY',

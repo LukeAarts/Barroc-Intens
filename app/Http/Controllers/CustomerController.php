@@ -79,7 +79,7 @@ class CustomerController extends Controller
     
         // Create a new company and associate it with the user
         $company = Company::create([
-            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
             'street' => $request->input('street'),
             'house_Number' => $request->input('houseNumber'),
             'zipcode' => $request->input('zipcode'),
