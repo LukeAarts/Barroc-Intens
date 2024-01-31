@@ -11,7 +11,9 @@
 </head>
 <body>
     <div class="container mt-4">
-        <a href="{{ route('maintenance.create') }}" class="btn btn-info btn-rounded mb-2">Maak afspraak</a>
+        @if(auth()->check() && (auth()->user()->role === 'Admin' || auth()->user()->role === 'Headmaintenance'))
+            <a href="{{ route('maintenance.create') }}" class="btn btn-info btn-rounded mb-2">Maak afspraak</a>
+        @endif
         <div id="calendar"></div>
     </div>    
     <script>

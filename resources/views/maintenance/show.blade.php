@@ -18,7 +18,7 @@
                     <button type="submit" class="bg-red-500 text-white p-2 rounded" onclick="return confirm('Weet je zeker dat je deze afspraak wilt verwijderen?')">Verwijderen</button>
                 </form>
             @else
-                <a href="{{ route('maintenance.create') }}" class="btn btn-primary">Maak Werkbon</a>
+                <a href="{{ route('work_orders.create') }}" class="btn btn-primary">Maak Werkbon</a>
             @endif
         </div>
     </div>
