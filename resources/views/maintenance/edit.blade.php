@@ -28,7 +28,7 @@
                 <select name="company_id" class="form-control" required>
                     @foreach($companies as $company)
                         <option value="{{ $company->id }}" {{ $maintenanceAppointment->company_id == $company->id ? 'selected' : '' }}>
-                            {{ $company->name }}
+                            {{ $company->company_name }}
                         </option>
                     @endforeach
                 </select>

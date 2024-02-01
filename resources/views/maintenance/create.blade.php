@@ -27,7 +27,7 @@
                 <label for="company_id" class="block text-sm font-semibold text-gray-600">Bedrijf:</label>
                 <select id="company_id" name="company_id" class="form-control" required>
                     @foreach($companies as $company)
-                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                        <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                     @endforeach
                 </select>
             </div>

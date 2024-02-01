@@ -1,55 +1,54 @@
 @extends('layouts.app')
 @section('content')
-   <h1>Onderhoudsafspraken</h1>
-   <table>
-       <thead>
-           <tr>
-               <th>ID</th>
-               <th>Opmerking</th>
-               <th>Bedrijf</th>
-               <th>Categorie</th>
-               <th>Type onderhoud</th>
-               <th>Datum toegevoegd</th>
-           </tr>
-       </thead>
-       <tbody>
-           @foreach($maintenanceAppointments as $appointment)
+   <div class="overflow-x-auto w-auto px-64">
+       <h1 class="text-3xl mb-4">Onderhoudsafspraken</h1>
+       <table class="table">
+           <thead>
                <tr>
-                   <td>{{ $appointment->id }}</td>
-                   <td>{{ $appointment->remark }}</td>
-                   <td>{{ $appointment->company->name }}</td>
-                   <td>{{ $appointment->product_category->name }}</td>
-                   <td>{{ $appointment->maintenance_type }}</td>
-                   <td>{{ $appointment->date_added }}</td>
+                   <th class="border py-2 px-4">ID</th>
+                   <th class="border py-2 px-4">Opmerking</th>
+                   <th class="border py-2 px-4">Bedrijf</th>
+                   <th class="border py-2 px-4">Categorie</th>
+                   <th class="border py-2 px-4">Type onderhoud</th>
+                   <th class="border py-2 px-4">Datum toegevoegd</th>
                </tr>
-           @endforeach
-       </tbody>
-   </table>
+           </thead>
+           <tbody>
+               @foreach($maintenanceAppointments as $appointment)
+                   <tr>
+                       <td class="border py-2 px-4">{{ $appointment->id }}</td>
+                       <td class="border py-2 px-4">{{ $appointment->remark }}</td>
+                       <td class="border py-2 px-4">{{ $appointment->company->name }}</td>
+                       <td class="border py-2 px-4">{{ $appointment->product_category->name }}</td>
+                       <td class="border py-2 px-4">{{ $appointment->maintenance_type }}</td>
+                       <td class="border py-2 px-4">{{ $appointment->date_added }}</td>
+                   </tr>
+               @endforeach
+           </tbody>
+       </table>
 
-
-   <h1>storings aanvragen</h1>
-   <table>
-    <thead>
-        <tr>
-            <th>titel</th>
-            <th>beschrijving</th>
-            <th>opmerkingen</th>
-            <th>klant</th>
-            <th>bedrijf</th>
-          
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($malfunctionRequests as $malfunctionRequest)
-            <tr>
-                <td>{{ $malfunctionRequest->title }}</td>
-                <td>{{ $malfunctionRequest->description }}</td>
-                <td>{{ $malfunctionRequest->comments }}</td>
-                <td>{{ optional($malfunctionRequest->user)->name }}</td>
-                <td>{{ optional($malfunctionRequest->company)->name }}</td>
-            
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+       <h1 class="text-3xl mt-8 mb-4">Storingsaanvragen</h1>
+       <table class="table">
+           <thead>
+               <tr>
+                   <th class="border py-2 px-4">Titel</th>
+                   <th class="border py-2 px-4">Beschrijving</th>
+                   <th class="border py-2 px-4">Opmerkingen</th>
+                   <th class="border py-2 px-4">Klant</th>
+                   <th class="border py-2 px-4">Bedrijf</th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach($malfunctionRequests as $malfunctionRequest)
+                   <tr>
+                       <td class="border py-2 px-4">{{ $malfunctionRequest->title }}</td>
+                       <td class="border py-2 px-4">{{ $malfunctionRequest->description }}</td>
+                       <td class="border py-2 px-4">{{ $malfunctionRequest->comments }}</td>
+                       <td class="border py-2 px-4">{{ optional($malfunctionRequest->user)->name }}</td>
+                       <td class="border py-2 px-4">{{ optional($malfunctionRequest->company)->company_name }}</td>
+                   </tr>
+               @endforeach
+           </tbody>
+       </table>
+   </div>
 @endsection
