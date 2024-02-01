@@ -92,4 +92,4 @@
             </button>
         </form>
     </div>
-@endsection$table->string('name');
+@endsection

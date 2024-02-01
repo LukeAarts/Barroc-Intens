@@ -82,7 +82,7 @@
     @yield('content')
 </section>
 <!-- Footer -->
-<footer class="bg-gray-700 text-white text-center py-4">
+<footer class="bg-zinc-700 text-white text-center py-4">
     <p>&copy; 2023 KoffieVerhuur. Alle rechten voorbehouden.</p>
 </footer>
 </body>

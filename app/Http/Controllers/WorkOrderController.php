@@ -80,7 +80,7 @@ class WorkOrderController extends Controller
 
         // Verdere logica of redirects hier...
 
-        return redirect()->route('maintenance.index');
+        return redirect()->route('maintenance.index')->session()->flash('success', 'Werkbon aangemaakt');;
     }
 
     /**
