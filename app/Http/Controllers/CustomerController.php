@@ -138,28 +138,40 @@ class CustomerController extends Controller
         // Haal de ingelogde klant op
         $customer = auth()->user();
     
-        // Haal het bedrijf van de klant op
-        $company = Company::where('user_id', $customer->id)->first();
+        // Controleer of de klant is gekoppeld aan een bedrijf
+        if ($customer->company_id) {
+            // Haal het bedrijf van de klant op
+            $company = Company::find($customer->company_id);
     
-        // Maak de storingsaanvraag aan
-        $malfunction = MalfunctionRequest::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'comments' => $request->input('comments'),
-            'customer_id' => $customer->id,
-            'company_id' => $company->id,
-        ]);
+            // Controleer of het bedrijf bestaat
+            if ($company) {
+                // Maak de storingsaanvraag aan
+                $malfunction = MalfunctionRequest::create([
+                    'title' => $request->input('title'),
+                    'description' => $request->input('description'),
+                    'comments' => $request->input('comments'),
+                    'customer_id' => $customer->id,
+                    'company_id' => $company->id,
+                ]);
     
-        // Haal het bestaande product op basis van het geselecteerde product_id in het formulier
-        $product = Product::find($request->input('product_id'));
+                // Haal het bestaande product op basis van het geselecteerde product_id in het formulier
+                $product = Product::find($request->input('product_id'));
     
-        // Voeg het product toe aan de storingsaanvraag
-        $malfunction->products()->attach($product->id);
+                // Voeg het product toe aan de storingsaanvraag
+                $malfunction->products()->attach($product->id);
     
-        // Voer verdere logica uit, indien nodig
+                // Voer verdere logica uit, indien nodig
     
-        return "Storingsaanvraag aangemaakt";
+                return "Storingsaanvraag aangemaakt";
+            } else {
+                return "Fout: Het bedrijf van de klant kon niet worden gevonden.";
+            }
+        } else {
+            return "Fout: De klant is niet gekoppeld aan een bedrijf.";
+        }
     }
+    
+    
        
 
     public function showAccountDeleteConfirmation()
