@@ -87,14 +87,11 @@ class NoteController extends Controller
     public function userNotes(User $user)
     {           
         $companies = Company::all();
-
         $notes = $user->notes;
+
         return view('notes.user_notes', compact('user', 'companies', 'notes'));
     }
     
-
-
-   
     public function destroy(Note $note)
     {
         $note->delete();

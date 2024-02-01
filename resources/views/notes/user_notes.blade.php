@@ -28,11 +28,11 @@
                     </thead>
                     <tbody>
                         @foreach($companies as $company)
-                            @if($company->user_id == $user->id)
+                            @if($user->company_id == $company->id)
                                 <tr>
                                     <td class="border py-2 px-4">{{$company->id}}</td>
                                     <td class="border py-2 px-4">{{$company->company_name}}</td>
-                                    <td class="border py-2 px-4">{{$company->name}}</td>
+                                    <td class="border py-2 px-4">{{$user->name}}</td>
                                     <td class="border py-2 px-4">{{$company->street}}</td>
                                     <td class="border py-2 px-4">{{$company->house_number}}</td>
                                     <td class="border py-2 px-4">{{$company->zipcode}}</td>
