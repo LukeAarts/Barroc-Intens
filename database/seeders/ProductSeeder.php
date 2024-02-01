@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     {
         Product::create([
             'name' => 'Machine Bit Deluxe',
-            'description' => 'beschrijving machine 1',
+            'description' => 'Onze koffiemachine met een luxe uitstraling!',
             'price' => '30',
             'stock' => 8,
             'product_category_id' => 2,
@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             'name' => 'Machine Bit Light',
-            'description' => 'beschrijving machine 2',
+            'description' => 'Onze lichte koffiemachine, makkelijk voor het meenemen!',
             'price' => '50',
             'stock' => 10,
             'product_category_id' => 2,
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             'name' => 'Machine Groot',
-            'description' => 'beschrijving machine 3',
+            'description' => 'Onze grote machine, met een mooi scherm en vele keuzes koffie!',
             'price' => '100',
             'stock' => 4,
             'product_category_id' => 2,
