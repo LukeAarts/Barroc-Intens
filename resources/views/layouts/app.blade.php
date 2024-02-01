@@ -23,7 +23,7 @@
             <li><a href="{{route('home')}}" class="hover:text-gray-300">Home</a></li>
             <li><a href="{{route('products.index')}}" class="hover:text-gray-300">Machines</a></li>
         </ul>
-        @if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user()->hasRole('Customer'))
+        @if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user())
             <ul class="flex right-64 space-x-4 text-xl font-light float-right absolute">
                 <li><a href="{{route('profile.edit')}}" class="hover:text-gray-300">Profiel</a></li>
                 <li><a href="{{route('logout')}}" class="hover:text-gray-300">Logout</a></li>
