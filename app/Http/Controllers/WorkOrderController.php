@@ -80,38 +80,6 @@ class WorkOrderController extends Controller
 
         // Verdere logica of redirects hier...
 
-        return redirect()->route('maintenance.index')->session()->flash('success', 'Werkbon aangemaakt');;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('maintenance.index')->with('success', 'Werkbon aangemaakt');;
     }
 }
