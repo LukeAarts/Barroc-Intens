@@ -59,7 +59,9 @@
                 <label for="assigned" class="block text-sm font-semibold text-gray-600">Toegewezen medewerker:</label>
                 <select id="assigned" name="assigned" class="form-control border rounded-md border-black" required>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @if ($user->role === "Maintenance")
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
