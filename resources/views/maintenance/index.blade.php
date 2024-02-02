@@ -20,7 +20,7 @@
 
                 <div class="text-center">
                     @if(auth()->check() && (auth()->user()->role === 'Headmaintenance' || auth()->user()->role === 'Admin'))
-                        <a href="{{ route('maintenance.headmaintenance') }}" class="btn btn-primary">Bekijk alle afspraken</a>
+                        <a href="{{ route('maintenance.headmaintenance') }}" class="btn btn-primary">Bekijk alle afspraken en aanvragen</a>
                     @else
                         <p class="mb-2 text-gray-700">Je moet ingelogd zijn als iemand met de rechten om de afspraken te kunnen bekijken.</p>
                         <a href="{{ route('login') }}" class="btn btn-primary">Inloggen</a>
