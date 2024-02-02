@@ -32,7 +32,7 @@
     </div>
 </nav>
 <!-- Navigatiebalk -->
-<nav class="bg-zinc-800  p-4 text-white">
+<nav class="bg-zinc-800 p-4 text-white">
     <div class="container mx-auto flex items-center w-full">
         <ul class="flex ml-24 space-x-4 text-xl font-light">
             @if(\Illuminate\Support\Facades\Auth::user() != null)

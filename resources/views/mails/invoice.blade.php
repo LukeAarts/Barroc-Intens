@@ -47,16 +47,22 @@
                         </tr>
                         <tr>
                             <td>
-                                Installatie (Machine ID: {{$invoice->product_id}})
+                                @foreach ($invoice->products as $product)
+                                    {{$product->name}}
+                                @endforeach
                             </td>
                             <td>
-                                1
+                                {{$invoice->quotation->amount}}
                             </td>
                             <td>
-                                {{$invoice->install_cost}}
+                                @foreach ($invoice->products as $product)
+                                    {{$product->price}}
+                                @endforeach
                             </td>
                             <td>
-                                {{$invoice->install_cost}}
+                                @foreach ($invoice->products as $product)
+                                    {{$product->pivot->subtotal}}
+                                @endforeach
                             </td>
                         </tr>
                     </table>

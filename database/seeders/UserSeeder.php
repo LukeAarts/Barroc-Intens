@@ -19,8 +19,6 @@ class UserSeeder extends Seeder
             'email' => 'inkoop@gmail.com',
             'password' => Hash::make('inkoop123456'),
             'role' => 'Inventory',
-
-
         ]);
 
         User::create([
@@ -28,32 +26,41 @@ class UserSeeder extends Seeder
             'email' => 'finance@gmail.com',
             'password' => Hash::make('finance123456'),
             'role' => 'Finance',
-
-
         ]);
+        
         User::create([
             'name' => 'sales',
             'email' => 'sales@gmail.com',
             'password' => Hash::make('sales123456'),
             'role' => 'Sales',
-
-
         ]);
+        
         User::create([
             'name' => 'maintenance',
             'email' => 'maintenance@gmail.com',
             'password' => Hash::make('maintenance123456'),
             'role' => 'Maintenance',
-
-
         ]);
+
+        User::create([
+            'name' => 'maintenance2',
+            'email' => 'maintenance2@gmail.com',
+            'password' => Hash::make('maintenance1234567'),
+            'role' => 'Maintenance',
+        ]);
+
+        User::create([
+            'name' => 'maintenance3',
+            'email' => 'maintenance3@gmail.com',
+            'password' => Hash::make('maintenance12345678'),
+            'role' => 'Maintenance',
+        ]);
+
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123456'),
             'role' => 'Admin',
-
-
         ]);
 
         User::create([
@@ -62,8 +69,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('customer123456'),
             'role' => 'Customer',
             'company_id' => 1
-
-
         ]);
 
         User::create([
@@ -72,8 +77,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('messi123456'),
             'role' => 'Customer',
             'company_id' => 2
-
-
         ]);
 
         User::create([
@@ -81,8 +84,6 @@ class UserSeeder extends Seeder
             'email' => 'headmaintenance@gmail.com',
             'password' => Hash::make('headmaintenance123456'),
             'role' => 'Headmaintenance',
-
-
         ]);
     }
 }

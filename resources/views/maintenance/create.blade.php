@@ -10,22 +10,22 @@
 
             <div class="mb-4">
                 <label for="title" class="block text-sm font-semibold text-gray-600">Titel:</label>
-                <input type="text" id="title" name="title" class="form-control" required>
+                <input type="text" id="title" name="title" class="form-control border rounded-md border-black" required>
             </div>
 
             <div class="mb-4">
                 <label for="start_date" class="block text-sm font-semibold text-gray-600">Startdatum:</label>
-                <input type="datetime-local" id="start_date" name="start_date" class="form-control" required>
+                <input type="datetime-local" id="start_date" name="start_date" class="form-control border rounded-md border-black" required>
             </div>
 
             <div class="mb-4">
                 <label for="end_date" class="block text-sm font-semibold text-gray-600">Einddatum:</label>
-                <input type="datetime-local" id="end_date" name="end_date" class="form-control" required>
+                <input type="datetime-local" id="end_date" name="end_date" class="form-control border rounded-md border-black" required>
             </div>
 
             <div class="mb-4">
                 <label for="company_id" class="block text-sm font-semibold text-gray-600">Bedrijf:</label>
-                <select id="company_id" name="company_id" class="form-control" required>
+                <select id="company_id" name="company_id" class="form-control border rounded-md border-black" required>
                     @foreach($companies as $company)
                         <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                     @endforeach
@@ -34,12 +34,12 @@
 
             <div class="mb-4">
                 <label for="remark" class="block text-sm font-semibold text-gray-600">Opmerking:</label>
-                <textarea id="remark" name="remark" class="form-control" required></textarea>
+                <textarea id="remark" name="remark" class="form-control border rounded-md border-black" required></textarea>
             </div>
 
             <div class="mb-4">
                 <label for="product_category_id" class="block text-sm font-semibold text-gray-600">Productcategorie:</label>
-                <select id="product_category_id" name="product_category_id" class="form-control" required>
+                <select id="product_category_id" name="product_category_id" class="form-control border rounded-md border-black" required>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -48,7 +48,7 @@
 
             <div class="mb-4">
                 <label for="maintenance_type" class="block text-sm font-semibold text-gray-600">Onderhoudstype:</label>
-                <select id="maintenance_type" name="maintenance_type" class="form-control" required>
+                <select id="maintenance_type" name="maintenance_type" class="form-control border rounded-md border-black" required>
                     @foreach($maintenanceTypes as $type)
                         <option value="{{ $type }}">{{ ucfirst($type) }}</option>
                     @endforeach
@@ -57,7 +57,7 @@
 
             <div class="mb-4">
                 <label for="assigned" class="block text-sm font-semibold text-gray-600">Toegewezen medewerker:</label>
-                <select id="assigned" name="assigned" class="form-control" required>
+                <select id="assigned" name="assigned" class="form-control border rounded-md border-black" required>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
